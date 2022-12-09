@@ -1,0 +1,24 @@
+/* Defines the style for the 'html' tag(s) */
+html {
+    height: 100%;
+}
+
+/* Defines the style for the 'body' tag(s) */
+body {
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+/* Defines the style for the 'a' (link) tag(s) */
+a {
+    text-decoration: none;
+}
+
+/* Defines the style for the 'a' (link) tag(s) for hovering */
+a:hover {
+    font-weight: bold;
+    color: #898989;
+}
+
+body {
+    background: red;
+}

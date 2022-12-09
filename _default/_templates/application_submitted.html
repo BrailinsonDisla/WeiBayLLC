@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title> RU Application Submitted </title>
+{% endblock %}
+
+{% block body %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <h1>Congratulations {{ messages[0] + ' ' + messages[1] }}</h1>
+
+            <p>Your application has been successfully submitted for approval!</p>
+        {% endif %}
+    {% endwith %}
+{% endblock %}

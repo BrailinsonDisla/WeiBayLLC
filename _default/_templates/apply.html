@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title> Submit RU Application </title>
+    <link href="/static/styles/_default/apply.css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <body>
+        <main>
+            <div class="row">
+                <div class="col-6">
+                    <div>
+                        <img src="/static/img/logos/logo.png" alt="WeiBayLLC Logo">
+                        <h1>Application for RU</h1>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <form id="app-form" method="POST" action="{{ url_for('_default.process_application') }}">
+                        <div class="app-form-item">
+                            <p>First Name</p>
+                            <input type="text" name="f_name" required class="app-form-input">
+                        </div>
+
+                        <div class="app-form-item">
+                            <p>Last Name</p>
+                            <input type="text" name="l_name" required class="app-form-input">
+                        </div>
+
+                        <div class="app-form-item">
+                            <p>Email</p>
+                            <input type="email" name="email" required class="app-form-input">
+                        </div>
+
+                        <div class="app-form-item">
+                            <p>Password</p>
+                            <input type="password" name="password" required class="app-form-input">
+                        </div>
+
+                        <div class="app-form-item">
+                            <p>Confirm Password</p>
+                            <input type="password" name="confirm_password" required class="app-form-input">
+                        </div>
+
+                        <input type="submit" value="Submit" class="app-form-submit">
+                    </form>
+
+                    <br>
+
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% if messages[0] == 'InvalidFirstName' %}
+                                <div class="alert alert-danger" role="alert">
+                                    <p>Enter a valid first name.</p>
+                                </div>
+                            {% elif messages[0] == 'InvalidLastName' %}
+                                <div class="alert alert-danger" role="alert">
+                                    <p>Enter a valid last name.</p>
+                                </div>
+                            {% elif messages[0] == 'InvalidEmail' %}
+                                <div class="alert alert-danger" role="alert">
+                                    <p>Enter a valid email address.</p>
+                                </div>
+                            {% elif messages[0] == 'InvalidPassword' %}
+                                <div class="alert alert-danger" role="alert">
+                                    <p>Enter a valid password.</p>
+                                </div>
+
+                            {% elif messages[0] == 'PasswordMismatch' %}
+                                <div class="alert alert-danger" role="alert">
+                                    <p>Passwords do not match.</p>
+                                </div>
+
+                            {% elif messages[0] == 'PendingApplicant' %}
+                                <div class="alert alert-danger" role="alert">
+                                    <p>You have a pending application.</p>
+                                </div>
+
+                            {% elif messages[0] == 'AlreadyRegistered' %}
+                                <div class="alert alert-danger" role="alert">
+                                    <p>You are already registered. <a href="{{ url_for('_default.login') }}">Login</a></p>
+                                </div>
+
+                            {% elif messages[0] == 'BannedApplicant' %}
+                                <div class="alert alert-danger" role="alert">
+                                    <p>You are banned from the system.</p>
+                                </div>
+                            {% endif %}
+                        {% endif %}
+
+                        {% if not messages or messages[0] not in ['BannedApplicant', 'AlreadyRegistered'] %}
+                            <p>Already have an account? <a href="{{ url_for('_default.login') }}">Login</a></p>
+                        {% endif %}
+                    {% endwith %}
+                </div>
+            </div>
+        </main>
+    </body>
+{% endblock %}

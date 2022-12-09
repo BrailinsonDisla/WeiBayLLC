@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title> Login </title>
+    <link href="/static/styles/_default/login.css" rel="stylesheet">
+
+
+{% endblock %}
+
+{% block body %}
+    <body>
+        <main>
+            <div class="row">
+                <div class="col-6">
+                    <div>
+                        <img src="/static/img/logos/logo.png" alt="WeiBayLLC Logo">
+                        <h1>WeiBay Login</h1>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <form id="app-form" method="POST" action="{{ url_for('_default.process_login') }}">
+                        <div class="app-form-item">
+                            <p>Email</p>
+                            <input type="email" name="email" required class="app-form-input">
+                        </div>
+
+                        <div class="app-form-item">
+                            <p>Password</p>
+                            <input type="password" name="password" required class="app-form-input">
+                        </div>
+
+                        <input type="submit" value="Login" class="app-form-submit">
+                    </form>
+
+                    <br>
+
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% if messages[0] == 'IncorrectPassword' %}
+                                <div class="alert alert-danger" role="alert">
+                                    <p>Incorrect password, try again.</p>
+                                </div>
+                            {% elif messages[0] == 'PendingApproval' %}
+                                <div class="alert alert-danger" role="alert">
+                                    <p>Pending approval, must wait.</p>
+                                </div>
+                            {% elif messages[0] == 'BannedUser' %}
+                                <div class="alert alert-danger" role="alert">
+                                    <p>You are banned from the system.</p>
+                                </div>
+                            {% elif messages[0] == 'UserDNE' %}
+                                <div class="alert alert-danger" role="alert">
+                                    <p>User does not exist. <a href="{{ url_for('_default.apply') }}">Apply</a></p>
+                                </div>
+                            {% endif %}
+                        {% endif %}
+
+                        {% if not messages or messages[0] not in ['UserDNE', 'BannedUser'] %}
+                            <p>Don't have an account?<a href="{{ url_for('_default.apply') }}">Apply</a></p>
+                        {% endif %}
+                    {% endwith %}
+                </div>
+            </div>
+        </main>
+    </body>
+{% endblock %}
