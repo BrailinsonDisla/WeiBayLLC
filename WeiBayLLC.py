@@ -1,14 +1,14 @@
+# Imports the hashing functionalities from werkzeug.security for authentication.
+from werkzeug.security import generate_password_hash
+
 # Imports the tools required from flask for the website application.
 from flask import Flask
-
-# Imports the SHA-256 hash function from hashlib.
-from hashlib import sha256
 
 # Creates the WeiBayLLC Flask Application.
 WeiBayLLC_App = Flask(__name__)
 
 # Defines a string digest for the application's secret key.
-sec_key = sha256('!223$TMCBA'.encode('utf-8')).hexdigest()
+sec_key = generate_password_hash('!223$TMCBA')
 
 # Configures the application's secret key.
 WeiBayLLC_App.config['SECRET_KEY'] = sec_key
