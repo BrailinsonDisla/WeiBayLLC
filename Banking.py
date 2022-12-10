@@ -1,8 +1,6 @@
 from mysql.connector import *
 from mysql.connector import connect
-from flask_login import LoginManager, login_user, current_user
-from WeiBayLLC import WeiBayLLC_App
-from flask_principal import Principal, Permission, RoleNeed, Identity, identity_changed, identity_loaded
+from flask_login import current_user
 from accountManagement import anonymous
 from id import *
 
