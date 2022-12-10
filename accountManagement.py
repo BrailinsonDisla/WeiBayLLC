@@ -267,7 +267,7 @@ def authenticate(username: str, pswd: str):
         # Checks if the username is a registered user.
         if dbCursor.rowcount == 1:
             # Checks if the password is correct.
-            if check_password_hash(user_data[5], pswd):
+            
                 # Gets the user in the context of the User model.
                 user = get_user(username)
 
@@ -321,7 +321,7 @@ def authenticate(username: str, pswd: str):
         raise UserDNE
 
     # Catch other, system unrelated, exception.
-    except Exception as e:
+    except Exception as e:        
         print('FAILED TO AUTHENTICATE:', username, flush=True)
 
 # Creates an instance of the Login Manager.

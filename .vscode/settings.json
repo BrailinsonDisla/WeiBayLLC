@@ -1,0 +1,17 @@
+{
+<<<<<<< Updated upstream
+    "workbench.colorCustomizations": {
+    
+    },
+    "workbench.preferredHighContrastColorTheme": "Visual Studio 2017 Dark - C++",
+    "workbench.preferredDarkColorTheme": "Visual Studio 2017 Dark - C++",
+    "workbench.tree.indent": 5,
+    "editor.fontLigatures": true,
+    "editor.fontFamily": "Consolas, 'Courier New', monospace",
+    "terminal.integrated.fontFamily": "Consolas, 'Courier New', monospace",
+=======
+     "python.pythonPath": "C:\\Users\\Andy\\miniconda3\\envs\\weibay\\python.exe",
+    "python.terminal.activateEnvironment": true,
+    "terminal.integrated.profiles.windows": "C:\\Windows\\System32\\cmd.exe",
+>>>>>>> Stashed changes
+}
