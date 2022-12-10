@@ -22,6 +22,7 @@ from DBModels import User
 # Imports the API for MySQL.
 from mysql.connector import *
 
+
 # Defines the admin role.
 default_admin_role = 'ADMIN'
 
@@ -96,7 +97,7 @@ def submitRUApplication(f_name: str, l_name: str, email: str, pswd: str, confirm
             raise PasswordMismatch
         else:
             # Hashes the password using SHA-256.
-            pswd_hash = generate_password_hash(pswd, method='sha-256')
+            pswd_hash = generate_password_hash(pswd, method='sha256')
 
     # Extracts the username from the email.
     username = email.split(sep='@')[0]
@@ -300,7 +301,7 @@ def authenticate(username : str, pswd : str):
         # Checks if the username is a registered user.
         if cursor.rowcount == 1:
             # Checks if the password is correct.
-            if check_password_hash(user_data[4], pswd):
+            if check_password_hash(user_data[4], pswd,):
                 # Gets the user in the context of the User model.
                 user = get_user(username)
 
@@ -354,7 +355,7 @@ def authenticate(username : str, pswd : str):
         raise UserDNE
 
     # Catch other, system unrelated, exception.
-    except Exception as e:
+    except Exception as e:        
         print('FAILED TO AUTHENTICATE:', username, flush=True)
 
 # Creates an instance of the Login Manager.
