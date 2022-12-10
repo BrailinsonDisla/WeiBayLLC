@@ -1,4 +1,4 @@
-# Imports the hashing functionalities from werkzeug.security for authentication.
+# Imports the hashing functionalities from werkzeug.security for encryption.
 from werkzeug.security import generate_password_hash
 
 # Imports the tools required from flask for the website application.
@@ -31,6 +31,13 @@ from _registered.views import _registered
 # Registers the _registered blueprint.
 WeiBayLLC_App.register_blueprint(_registered)
 
-# Runs the WeiBayLLC website application.
+from setup_admins import setup_accounts, setup_products, setup_reports, test_admin_dashboard
+
+# setup_accounts()
+# setup_products()
+setup_reports()
+#test_admin_dashboard()
+
+# Starts the WeiBayLLC website application.
 if __name__ == '__main__':
     WeiBayLLC_App.run()

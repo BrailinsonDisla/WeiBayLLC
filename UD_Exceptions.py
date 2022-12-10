@@ -1,4 +1,4 @@
-## APPLICATION-RELATED ##
+## USER-APPLICATION-RELATED ##
 # Exception for an invalid first name.
 class InvalidFirstName(Exception):
     pass
@@ -31,7 +31,7 @@ class AlreadyRegistered(Exception):
 class BannedApplicant(Exception):
     pass
 
-## AUTHENTICATION-RELATED ##
+## USER-AUTHENTICATION-RELATED ##
 # Exception for incorrect password.
 class IncorrectPassword(Exception):
     pass
@@ -46,4 +46,62 @@ class BannedUser(Exception):
 
 # Exception for non-existent user.
 class UserDNE(Exception):
+    pass
+
+## PRODUCT-APPLICATION-RELATED ##
+# Exception for invalid user id.
+class InvalidSellerID(Exception):
+    pass
+
+# Exception for invalid product name.
+class InvalidProductName(Exception):
+    pass
+
+# Exception for invalid product description.
+class InvalidDescription(Exception):
+    pass
+
+# Exception for invalid price.
+class InvalidPrice(Exception):
+    pass
+
+# Exception for products pending approval.
+class PendingProductApproval(Exception):
+    pass
+
+# Exception for listed products.
+class ListedProduct(Exception):
+    pass
+
+# Exception for denied products.
+class DeniedProduct(Exception):
+    pass
+
+# Exception for banned products.
+class BannedProduct(Exception):
+    pass
+
+## REPORT-SUBMISSION-RELATED ##
+# Exception for invalid product id.
+class InvalidProductID(Exception):
+    pass
+
+# Exception for invalid reporter id.
+class InvalidReporterID(Exception):
+    pass
+
+# Exception for invalid reason.
+class InvalidReason(Exception):
+    pass
+
+# Exception for report pending approval.
+class PendingReportApproval(Exception):
+    pass
+
+# Exception for approved report.
+class ApprovedReport(Exception):
+    pass
+
+# Except for denied report.
+class DeniedReport(Exception):
     pass

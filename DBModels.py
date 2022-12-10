@@ -1,7 +1,7 @@
-# Imports the tools required from flask for the website application.
+# Imports the tools required from flask for DB User model.
 from flask_login import UserMixin
 
-# Imports the SQLAlchemy module for DB models.
+# Imports the SQLAlchemy module for the DB model.
 from flask_sqlalchemy import SQLAlchemy
 
 # Initializes an instance of SQLAlchemy.
@@ -27,11 +27,20 @@ class User(UserMixin):
     # Defines the email.
     email = database.Column(database.String(45), unique=True)
 
+    # Defines the role.
+    role = database.Column(database.String(5))
+
     # Defines the password.
     password = database.Column(database.String(255))
 
-    # Defines the role.
-    role = database.Column(database.String(5))
+    # Defines the phone number.
+    phone = database.Column(database.String(12))
+
+    # Defines the address foreign key.
+    addressFK = database.Column(database.Integer)
+
+    # Defines the bank account foreign key.
+    bankAccountFK = database.Column(database.Integer)
 
     # Defines the authentication status.
     authenticated = database.Column(database.Boolean, default=False)

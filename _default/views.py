@@ -120,6 +120,7 @@ def process_application(): # Page for application processing.
         # DB-SYSTEM-RELATED EXCEPTIONS.
         except PendingApplicant:
             flash('PendingApplicant')
+        # TODO: HANDLE FOR DENIED USERS.
         except AlreadyRegistered:
             flash('AlreadyRegistered')
         except BannedApplicant:
