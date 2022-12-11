@@ -459,7 +459,7 @@ def anonymous():
 
 # Checks if the current identity is anonymous.
 def anonymousIdentity():
-    return g.identity == None or not hasattr(g.identity, 'id')
+    return isinstance(g.identity, AnonymousIdentity)
 
 # Checks if the current user is admin.
 def is_admin():

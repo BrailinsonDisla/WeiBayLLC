@@ -1,7 +1,7 @@
 # Imports the tools required from flask for the website application.
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, redirect, url_for, flash, request
 
-# Imports the Accounts Management module.
+# Imports the tools required from the Account Management module.
 from accountManagement import submitRUApplication, authenticate, anonymous
 
 # Imports user-defined exceptions.
