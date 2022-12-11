@@ -1,10 +1,372 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Title</title>
-    </head>
-    <body>
-        PROFILE
-    </body>
-</html>
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/styles/_registered/profile.css">
+{% endblock %}
+
+{% block body %}
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-2 justify-content-center">
+                <img class="user-pic" src="/static/img/for_registered/user.png" alt="user">
+                <h4>Hello, ## User ## </h4>
+                <div class="btn-group-vertical" role="group">
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" onclick="op1()" checked>
+                    <label class="btn btn-outline-primary" for="btnradio1">Profile</label>
+
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" onclick="op2()">
+                    <label class="btn btn-outline-primary" for="btnradio2">Orders</label>
+
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" onclick="op3()">
+                    <label class="btn btn-outline-primary" for="btnradio3">Saved Items</label>
+
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio4" onclick="op4()">
+                    <label class="btn btn-outline-primary" for="btnradio4">Funds</label>
+
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio5" onclick="op5()">
+                    <label class="btn btn-outline-primary" for="btnradio5">Posted Items</label>
+
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio6" onclick="op6()">
+                    <label class="btn btn-outline-primary" for="btnradio6">Account and Security</label>
+
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio7" onclick="op7()">
+                    <label class="btn btn-outline-primary" for="btnradio7">Reports</label>
+                </div>
+            </div>
+            <div class="col-10">
+                <div class="container" id="section1">
+                    <table>
+                        <tr>
+                            <th>First Name</th>
+                            <td>dummy</td>
+                        </tr>
+                        <tr>
+                            <th>Last Name</th>
+                            <td>dummy</td>
+                        </tr>
+                        <tr>
+                            <th>User Name</th>
+                            <td>dummy</td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td>dummy</td>
+                        </tr>
+                        <tr>
+                            <th>Phone Number</th>
+                            <td>dummy</td>
+                        </tr>
+                        <tr>
+                            <th>Address</th>
+                            <td>dummy</td>
+                        </tr>
+                        <tr>
+                            <th>City</th>
+                            <td>dummy</td>
+                        </tr>
+                        <tr>
+                            <th>State</th>
+                            <td>dummy</td>
+                        </tr>
+                        <tr>
+                            <th>ZIP Code</th>
+                            <td>dummy</td>
+                        </tr>
+                        <tr>
+                            <th>Country</th>
+                            <td>dummy</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="container" id="section2">
+                    <table>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Total</th>
+                            <th>Placed On</th>
+                            <th>View Order (button)</th>
+                            <th>Cancel (Button)</th>
+                        </tr>
+                        <tr>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="container" id="section3">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card text-center">
+                              <img src="/static/img/logos/logo.png" alt="weibay_logo">
+                              <div class="card-body">
+                                <h5 class="card-title">dummy item 1</h5>
+                                <p class="card-text">Name: ## name ##</p>
+                                <p class="card-text">Condition: ## condition ##</p>
+                                <p class="card-text">Description: ## description ##</p>
+                                <p class="card-text">Price: ## price ##</p>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card text-center">
+                              <img src="/static/img/logos/logo.png" alt="weibay_logo">
+                              <div class="card-body">
+                                <h5 class="card-title">dummy item 2</h5>
+                                <p class="card-text">Name: ## name ##</p>
+                                <p class="card-text">Condition: ## condition ##</p>
+                                <p class="card-text">Description: ## description ##</p>
+                                <p class="card-text">Price: ## price ##</p>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card text-center">
+                              <img src="/static/img/logos/logo.png" alt="weibay_logo">
+                              <div class="card-body">
+                                <h5 class="card-title">dummy item 3</h5>
+                                <p class="card-text">Name: ## name ##</p>
+                                <p class="card-text">Condition: ## condition ##</p>
+                                <p class="card-text">Description: ## description ##</p>
+                                <p class="card-text">Price: ## price ##</p>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card text-center">
+                              <img src="/static/img/logos/logo.png" alt="weibay_logo">
+                              <div class="card-body">
+                                <h5 class="card-title">dummy item 4</h5>
+                                <p class="card-text">Name: ## name ##</p>
+                                <p class="card-text">Condition: ## condition ##</p>
+                                <p class="card-text">Description: ## description ##</p>
+                                <p class="card-text">Price: ## price ##</p>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card text-center">
+                              <img src="/static/img/logos/logo.png" alt="weibay_logo">
+                              <div class="card-body">
+                                <h5 class="card-title">dummy item 5</h5>
+                                <p class="card-text">Name: ## name ##</p>
+                                <p class="card-text">Condition: ## condition ##</p>
+                                <p class="card-text">Description: ## description ##</p>
+                                <p class="card-text">Price: ## price ##</p>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="card text-center">
+                              <img src="/static/img/logos/logo.png" alt="weibay_logo">
+                              <div class="card-body">
+                                <h5 class="card-title">dummy item 6</h5>
+                                <p class="card-text">Name: ## name ##</p>
+                                <p class="card-text">Condition: ## condition ##</p>
+                                <p class="card-text">Description: ## description ##</p>
+                                <p class="card-text">Price: ## price ##</p>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card text-center">
+                              <img src="/static/img/logos/logo.png" alt="weibay_logo">
+                              <div class="card-body">
+                                <h5 class="card-title">dummy item 7</h5>
+                                <p class="card-text">Name: ## name ##</p>
+                                <p class="card-text">Condition: ## condition ##</p>
+                                <p class="card-text">Description: ## description ##</p>
+                                <p class="card-text">Price: ## price ##</p>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card text-center">
+                              <img src="/static/img/logos/logo.png" alt="weibay_logo">
+                              <div class="card-body">
+                                <h5 class="card-title">dummy item 8</h5>
+                                <p class="card-text">Name: ## name ##</p>
+                                <p class="card-text">Condition: ## condition ##</p>
+                                <p class="card-text">Description: ## description ##</p>
+                                <p class="card-text">Price: ## price ##</p>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card text-center">
+                              <img src="/static/img/logos/logo.png" alt="weibay_logo">
+                              <div class="card-body">
+                                <h5 class="card-title">dummy item 9</h5>
+                                <p class="card-text">Name: ## name ##</p>
+                                <p class="card-text">Condition: ## condition ##</p>
+                                <p class="card-text">Description: ## description ##</p>
+                                <p class="card-text">Price: ## price ##</p>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card text-center">
+                              <img src="/static/img/logos/logo.png" alt="weibay_logo">
+                              <div class="card-body">
+                                <h5 class="card-title">dummy item 10</h5>
+                                <p class="card-text">Name: ## name ##</p>
+                                <p class="card-text">Condition: ## condition ##</p>
+                                <p class="card-text">Description: ## description ##</p>
+                                <p class="card-text">Price: ## price ##</p>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container" id="section4">
+                    <div class="row">
+                        <div class="col-6">
+                            <form id="despoit-form">
+                                <div class="group">
+                                    <label for="deposit">Deposit</label>
+                                    <input type="text" id="deposit" name="deposit">
+                                </div>
+
+                                <div class="group">
+                                    <label for="bank1">Bank</label>
+                                    <select name="bank1" id="bank1">
+                                      <option value="TD Bank">TD Bank</option>
+                                      <option value="Chase">Chase</option>
+                                      <option value="Bank of America">Bank of America</option>
+                                      <option value="Capital One">Capital One</option>
+                                    </select>
+                                </div>
+
+                                <div class="group">
+                                    <label for="name">Name</label>
+                                    <input type="text" id="name" name="name">
+                                </div>
+                                <div class="group">
+                                    <label for="acc_num">Account #</label>
+                                    <input type="text" id="acc_num" name="acc_num">
+                                </div>
+
+                                <div class="group">
+                                    <label for="key">Key</label>
+                                    <input type="text" id="key" name="key">
+                                </div>
+                                <input type="submit" class="btn" value="Deposit">
+                            </form>
+                        </div>
+                        <div class="col-6">
+                            <form id="withdraw-form">
+                                <div class="group">
+                                    <label for="withdraw">Withdraw</label>
+                                    <input type="text" id="withdraw" name="deposit">
+                                </div>
+
+                                <div class="group">
+                                    <label for="bank2">Bank</label>
+                                   <select name="bank2" id="bank2">
+                                      <option value="TD Bank">TD Bank</option>
+                                      <option value="Chase">Chase</option>
+                                      <option value="Bank of America">Bank of America</option>
+                                      <option value="Capital One">Capital One</option>
+                                    </select>
+                                </div>
+
+                                <div class="group">
+                                    <label for="acc_num">Account #</label>
+                                    <input type="text" id="acc_num" name="acc_num">
+                                </div>
+                                <input type="submit" class="btn" value="Withdraw">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="container" id="section5">
+                    posted items
+                </div>
+                <div class="container" id="section6">
+                    account and security
+                </div>
+                <div class="container" id="section7">
+                    reports
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+       function op1() {
+           document.getElementById("section1").style.display = "block";
+           document.getElementById("section2").style.display = "none";
+           document.getElementById("section3").style.display = "none";
+           document.getElementById("section4").style.display = "none";
+           document.getElementById("section5").style.display = "none";
+           document.getElementById("section6").style.display = "none";
+           document.getElementById("section7").style.display = "none";
+       }
+
+       function op2() {
+           document.getElementById("section1").style.display = "none";
+           document.getElementById("section2").style.display = "block";
+           document.getElementById("section3").style.display = "none";
+           document.getElementById("section4").style.display = "none";
+           document.getElementById("section5").style.display = "none";
+           document.getElementById("section6").style.display = "none";
+           document.getElementById("section7").style.display = "none";
+       }
+
+       function op3() {
+           document.getElementById("section1").style.display = "none";
+           document.getElementById("section2").style.display = "none";
+           document.getElementById("section3").style.display = "block";
+           document.getElementById("section4").style.display = "none";
+           document.getElementById("section5").style.display = "none";
+           document.getElementById("section6").style.display = "none";
+           document.getElementById("section7").style.display = "none";
+       }
+
+       function op4() {
+           document.getElementById("section1").style.display = "none";
+           document.getElementById("section2").style.display = "none";
+           document.getElementById("section3").style.display = "none";
+           document.getElementById("section4").style.display = "block";
+           document.getElementById("section5").style.display = "none";
+           document.getElementById("section6").style.display = "none";
+           document.getElementById("section7").style.display = "none";
+       }
+
+       function op5() {
+           document.getElementById("section1").style.display = "none";
+           document.getElementById("section2").style.display = "none";
+           document.getElementById("section3").style.display = "none";
+           document.getElementById("section4").style.display = "none";
+           document.getElementById("section5").style.display = "block";
+           document.getElementById("section6").style.display = "none";
+           document.getElementById("section7").style.display = "none";
+       }
+
+       function op6() {
+           document.getElementById("section1").style.display = "none";
+           document.getElementById("section2").style.display = "none";
+           document.getElementById("section3").style.display = "none";
+           document.getElementById("section4").style.display = "none";
+           document.getElementById("section5").style.display = "none";
+           document.getElementById("section6").style.display = "block";
+           document.getElementById("section7").style.display = "none";
+       }
+
+       function op7() {
+           document.getElementById("section1").style.display = "none";
+           document.getElementById("section2").style.display = "none";
+           document.getElementById("section3").style.display = "none";
+           document.getElementById("section4").style.display = "none";
+           document.getElementById("section5").style.display = "none";
+           document.getElementById("section6").style.display = "none";
+           document.getElementById("section7").style.display = "block";
+       }
+    </script>
+</body>
+{% endblock %}

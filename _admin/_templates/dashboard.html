@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="/static/styles/_admin/admin.css">
 {% endblock %}
 
-{% block body %} 
+{% block body %}
 <body>
     <div class="container">
         <div class="row">
@@ -46,26 +46,30 @@
                         <label class="btn btn-outline-primary" for="btnradio1-4">Banned Users</label>
                     </div>
                     <table class="table align-middle" id="table1-1">
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
-                            <th>Email</th>
-                            <th>Role</th>
-                            <th>Edit (Button)</th>
-                            <th>Remove (Button)</th>
-                            <th>Ban (Button)</th>
-                        </tr>
-                        <tr>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                        </tr>
+                        <thead>
+                            <tr>
+                                <th colspan="100%">First Name</th>
+                                <th colspan="100%">Last Name</th>
+                                <th colspan="100%">Username</th>
+                                <th colspan="100%">Email</th>
+                                <th colspan="100%">Role</th>
+                                <th colspan="100%"></th>
+                                <th colspan="100%"></th>
+                                <th colspan="100%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="100%">dummy</td>
+                                <td colspan="100%">dummy</td>
+                                <td colspan="100%">dummy</td>
+                                <td colspan="100%">dummy</td>
+                                <td colspan="100%">dummy</td>
+                                <td colspan="100%"><button type="button" class="btn">Edit</button></td>
+                                <td colspan="100%"><button type="button" class="btn">Remove</button></td>
+                                <td colspan="100%"><button type="button" class="btn">Ban</button></td>
+                            </tr>
+                        </tbody>
                     </table>
 
                     <table class="table align-middle" id="table1-2">

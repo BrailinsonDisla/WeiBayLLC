@@ -1,0 +1,109 @@
+body {
+    background-color: white;
+}
+
+.container {
+    padding: 15px;
+    height: 100%;
+}
+
+#section2, #section3, #section4,
+#section5, #section6, #section7 {
+    display: none;
+}
+
+.col-2 {
+    background-color: #22e9fc;
+    padding: 15px;
+}
+
+.col-2 > * {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.col-2, .col-10 {
+    height: 100%;
+}
+
+.user-pic {
+    width: 100%;
+}
+
+.btn,
+.btn:hover,
+.btn:active,
+.btn:visited,
+.btn:focus {
+    background-color: #c2f9fe !important;
+    border-color: #c2f9fe !important;
+}
+
+.btn {
+    color: black !important;
+}
+
+.btn-check:checked + .btn {
+    color: #a30000 !important;
+}
+
+.btn:hover {
+    color: #898989 !important;
+}
+
+th, td {
+    padding: 10px;
+}
+
+th {
+    background-color: #a6a6a6;
+}
+
+table, th, td {
+    border: 3px solid white;
+    border-collapse: collapse;
+}
+
+/* SECTION 1 */
+/*************/
+
+/* SECTION 2 */
+/*************/
+
+/* SECTION 3 */
+#section3 img {
+    max-width: 100%;
+}
+
+#section3 .card-text {
+    text-align: left;
+}
+
+#section3 .row {
+    margin: 15px;
+}
+/*************/
+
+/* SECTION 4 */
+#section4 label {
+    width: 200px;
+}
+
+#section4 select, #section4 input {
+    padding: 5px;
+    width: 200px;
+}
+
+#section4 .group, #section4 .btn {
+    margin: 15px;
+}
+/*************/
+
+/* SECTION 5 */
+/*************/
+
+/* SECTION 6 */
+/*************/
+
+/* SECTION 7 */
+/*************/
