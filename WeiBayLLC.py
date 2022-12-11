@@ -36,7 +36,8 @@ from setup_admins import setup_accounts, setup_products, setup_reports, test_adm
 # setup_accounts()
 # setup_products()
 # setup_reports()
-#test_admin_dashboard()
+
+# test_admin_dashboard()
 
 # Starts the WeiBayLLC website application.
 if __name__ == '__main__':

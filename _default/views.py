@@ -1,11 +1,8 @@
 # Imports the tools required from flask for the website application.
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 
-# Imports the tools required from flask_login for Login Management.
-from flask_login import current_user
-
 # Imports the Accounts Management module.
-import accountManagement as accMgmt
+from accountManagement import submitRUApplication, authenticate, anonymous
 
 # Imports user-defined exceptions.
 from UD_Exceptions import *
@@ -20,7 +17,7 @@ def homepage(): # Homepage for the website application.
 @_default.route('/login')
 def login(): # Page for login.
     # Checks if the current user is anonymous.
-    if accMgmt.anonymous():
+    if anonymous():
         return render_template('login.html')
     else:
         flash('LoggedIn')
@@ -40,7 +37,7 @@ def process_login(): # Page for login processing.
 
         try:
             # Submits authentication request.
-            authenticated = accMgmt.authenticate(username, pswd)
+            authenticated = authenticate(username, pswd)
 
             # Checks if the authentication was successful.
             if authenticated:
@@ -60,12 +57,16 @@ def process_login(): # Page for login processing.
         # Redirect (reload) the page.
         return redirect(url_for('_default.login'))
     else:
-        return redirect(url_for('_default.login'))
+        if anonymous():
+            return redirect(url_for('_default.login'))
+        else:
+            flash('LoggedIn')
+            return redirect(url_for('_default.homepage'))
 
 @_default.route('/apply')
 def apply(): # Page for RU Application.
     # Checks if the current user is anonymous.
-    if accMgmt.anonymous():
+    if anonymous():
         return render_template('apply.html')
     else:
         flash('LoggedIn')
@@ -91,7 +92,7 @@ def process_application(): # Page for application processing.
 
         try:
             # Submits the application.
-            accMgmt.submitRUApplication(f_name, l_name, email, pswd, confirm_pswd)
+            submitRUApplication(f_name, l_name, email, pswd, confirm_pswd)
 
             # Store the applicant's first name.
             flash(f_name)
@@ -129,13 +130,17 @@ def process_application(): # Page for application processing.
         # Redirect (reload) the page.
         return redirect(url_for('_default.apply'))
     else:
-        return redirect(url_for('_default.apply'))
+        # Checks if the current user is anonymous.
+        if anonymous():
+            return redirect(url_for('_default.apply'))
+        else:
+            return redirect(url_for('_default.homepage'))
 
-@_default.route('/application_submitted', methods=['POST'])
+@_default.route('/application_submitted', methods=['GET', 'POST'])
 def application_submitted(): # Page for submitted application.
     if request.method == "POST":
         # Checks if the current user is anonymous.
-        if accMgmt.anonymous():
+        if anonymous():
             return render_template('application_submitted.html')
     else:
         return redirect(url_for('_default.homepage'))
