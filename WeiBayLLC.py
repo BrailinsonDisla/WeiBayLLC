@@ -4,9 +4,6 @@ from werkzeug.security import generate_password_hash
 # Imports the tools required from flask for the website application.
 from flask import Flask, g
 
-# Imports the fuctions that setup the initial state of the application.
-from setup_admins import *
-
 # Creates the WeiBayLLC Flask Application.
 WeiBayLLC_App = Flask(__name__)
 
@@ -33,6 +30,9 @@ from _registered.views import _registered
 
 # Registers the _registered blueprint.
 WeiBayLLC_App.register_blueprint(_registered)
+
+# Imports the fuctions that setup the initial state of the application.
+from setup_admins import setup_accounts, setup_products, setup_reports
 
 # Sets up the application's initial state.
 # setup_accounts()
