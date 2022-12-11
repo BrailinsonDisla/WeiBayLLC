@@ -2,7 +2,6 @@
 from flask import Blueprint, render_template, redirect, url_for
 
 # Imports the Accounts Management module.
-
 from accountManagement import is_admin, login_required
 
 # Initializes the blueprint for the _admin, the administrators.
@@ -14,8 +13,9 @@ _admin = Blueprint('_admin', __name__, template_folder='_templates', static_fold
 @login_required
 def dashboard():
     # Checks if the current user is an admin.
-    if anonymousIdentity():
+    if is_admin():
+            return render_template('dashboard.html')
+    else:
         return redirect(url_for('_default.homepage'))
-    return render_template('dashboard.html')
 
 ## DEFINE OTHER ROUTES
