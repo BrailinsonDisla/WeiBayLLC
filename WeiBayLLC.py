@@ -2,7 +2,7 @@
 from werkzeug.security import generate_password_hash
 
 # Imports the tools required from flask for the website application.
-from flask import Flask
+from flask import Flask, g
 
 # Creates the WeiBayLLC Flask Application.
 WeiBayLLC_App = Flask(__name__)

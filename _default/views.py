@@ -146,3 +146,11 @@ def application_submitted(): # Page for submitted application.
         return redirect(url_for('_default.homepage'))
 
 ## DEFINE OTHER ROUTES
+
+@_default.route('/product')
+def product():
+    return render_template('product.html')
+
+@_default.route('/home')
+def home():
+    return render_template('home.html')
