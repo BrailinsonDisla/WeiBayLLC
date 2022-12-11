@@ -1,14 +1,13 @@
 # Imports the tools required from flask for the website application.
 from flask import Blueprint, render_template, redirect, url_for
 
-# Imports the Accounts Management module.
+# Imports the tools required from the Account Management module.
 from accountManagement import is_admin, login_required
 
 # Initializes the blueprint for the _admin, the administrators.
 _admin = Blueprint('_admin', __name__, template_folder='_templates', static_folder='_static')
 
 # Defines the _admin blueprint's root.
-
 @_admin.route('/admin')
 @login_required
 def dashboard():
