@@ -11,7 +11,7 @@ from flask_login import LoginManager, login_user, current_user, login_required
 import re as regEx
 
 # Imports the flask website application and required tools.
-from WeiBayLLC import WeiBayLLC_App
+from WeiBayLLC import WeiBayLLC_App, g
 
 # Imports the connection from the DB Connection module.
 from DBConnection import dbConnection, dbCursor
@@ -436,7 +436,6 @@ def setGlobalIdentity(user: User):
     # Creates an identity for the user logged in.
     identity = Identity(user.username)
 
-
     # Sets the user for the identity.
     identity.user = user
 
@@ -453,8 +452,22 @@ def setGlobalIdentity(user: User):
 
 # Checks if the current user is anonymous.
 def anonymous():
-    return current_user == None or not hasattr(current_user, 'authenticated')
+    return isinstance(current_user, Anonymous)
 
 # Checks if the current identity is anonymous.
 def anonymousIdentity():
     return g.identity == None or not hasattr(g.identity, 'id')
+
+# Checks if the current user is admin.
+def is_admin():
+    if not anonymous():
+        return g.identity.can(admin_perm)
+
+# Checks if the current user is a registered user.
+def is_registered_user():
+    if not anonymous():
+        return g.identity.can(registered_perm)
+
+# Checks if the current user is a guest user.
+def is_guest_user():
+    return anonymous()
