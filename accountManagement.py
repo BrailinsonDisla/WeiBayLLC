@@ -340,13 +340,12 @@ def get_user(username: str):
 
     try:
         # Gets the information for the registered user.
-        dbCursor.execute("SELECT `User ID`, `First Name`, `Last Name`, `Username`, `Email`, `Password`, `Role`, "
-                         "`Phone`, `Address`, `Bank Account` FROM RegisteredUsers WHERE `Username` = %s", (username,))
+        dbCursor.execute("SELECT * FROM RegisteredUsers WHERE `Username` = %s", (username,))
 
         # Fetches the first result of the query.
         user_data = dbCursor.fetchone()
 
-        # Checks
+        # Checks if a user exists.
         if dbCursor.rowcount == 1:
             # Defines a user using the User model.
             user = User()
