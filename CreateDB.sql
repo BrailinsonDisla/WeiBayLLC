@@ -102,7 +102,6 @@ CREATE TABLE Addresses (
 
 CREATE TABLE BankAccounts (
     `Account Number`    INT UNIQUE AUTO_INCREMENT,
-
     `Owner`             INT DEFAULT NULL,
     `Account Balance`   INT NOT NULL DEFAULT 1000.0,
 
