@@ -2,6 +2,7 @@
 from werkzeug.security import generate_password_hash
 
 # Imports the tools required from flask for the website application.
+
 from flask import Flask, g
 
 # Imports the fuctions that setup the initial state of the application.
