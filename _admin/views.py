@@ -2,7 +2,7 @@
 from flask import Blueprint, render_template, redirect, url_for
 
 # Imports the Accounts Management module.
-from accountManagement import admin_perm, login_required, g, anonymousIdentity
+from accountManagement import admin_perm, login_required
 
 # Initializes the blueprint for the _admin, the administrators.
 _admin = Blueprint('_admin', __name__, template_folder='_templates', static_folder='_static')

@@ -1,11 +1,8 @@
 # Imports the tools required from flask for the website application.
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 
-# Imports the tools required from flask_login for Login Management.
-# from flask_login import current_user
-
 # Imports the Accounts Management module.
-from accountManagement import authenticate, submitRUApplication, anonymous
+from accountManagement import submitRUApplication, authenticate, anonymous
 
 # Imports user-defined exceptions.
 from UD_Exceptions import *
@@ -60,7 +57,11 @@ def process_login(): # Page for login processing.
         # Redirect (reload) the page.
         return redirect(url_for('_default.login'))
     else:
-        return redirect(url_for('_default.login'))
+        if anonymous():
+            return redirect(url_for('_default.login'))
+        else:
+            flash('LoggedIn')
+            return redirect(url_for('_default.homepage'))
 
 @_default.route('/apply')
 def apply(): # Page for RU Application.
