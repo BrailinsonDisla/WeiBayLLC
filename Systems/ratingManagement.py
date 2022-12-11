@@ -14,26 +14,34 @@ class Rating:
         
     def rate_trans(self, grade : int):
         # !function to check if the user purchase the product 
-        dbCursor.execute("SELECT * FROM ORDERS WHERE `Buyer ID`=? AND product_id=?", self.id, self.product)
+        dbCursor.execute("SELECT * FROM ORDERS WHERE `Buyer ID`=? AND `Product ID`=?", (self.id, self.product))
 
     # Fetch the result of the query
         result = dbCursor.fetchone()
-
         # Check if the user has purchased the product
         if result is None:
             print("Sorry, you cannot make a review for this product because you have not purchased it.")
         else:
-            dbCursor.execute("INSERT INTO REVIEWS VALUES(%s, %s, %s)", (self.user, self.product, grade))
+            seller_id = self.get_seller_id()
+            dbCursor.execute("INSERT INTO RATINGS VALUES(%s, %s, %s, %s)", (self.product, seller_id , self.user, grade))
             # Check if the current user wrote too many extreme reviews
             self.sus_rate()
     
+    # Get the Seller ID base on the product ID
+    def get_seller_id(self):
+        dbCursor.execute("SELECT `Seller` FROM ListedProducts WHERE `Product ID` = %s", (self.product)) 
+        
+        #Get the Seller Id for the sold product 
+        seller_id = dbCursor.fetchone()[0]
+        return seller_id
+        
     def  sus_rate(self):
-        dbCursor.execute("SELECT * FROM REVIEWS WHERE grade = '1' GROUP BY user_id HAVING COUNT(*) = 3"
-        "UNION SELECT * FROM REVIEWS WHERE grade = '5' GROUP BY user_id HAVING COUNT(*) = 3")
+        dbCursor.execute("SELECT * FROM RATINGS WHERE GRADE = '1' GROUP BY BUYER_ID HAVING COUNT(*) = 3"
+        "UNION SELECT * FROM RATINGS WHERE GRADE = '5' GROUP BY BUYER_ID HAVING COUNT(*) = 3")
         
         results = dbCursor.fetchall()
         if len(results):
             reason = "User has made more then at least 3 negative reviews or  3 positive reviews."
-            #!check seller_id by checking the product seller OR make a new submitReport
+            seller_id = self.get_seller_id()
             submitReport(self.product,seller_id,self.id,reason)
         
