@@ -11,7 +11,7 @@ from flask_login import LoginManager, login_user, current_user, login_required
 import re as regEx
 
 # Imports the flask website application and required tools.
-from WeiBayLLC import WeiBayLLC_App, g
+from WeiBayLLC import WeiBayLLC_App
 
 # Imports the connection from the DB Connection module.
 from DBConnection import dbConnection, dbCursor
@@ -420,7 +420,7 @@ guest_perm = Permission(RoleNeed(default_gest_role))
 @login_manager.user_loader
 def load_user(username: str): # Defines the user loader for the login manager.
     # Gets the user logged in.
-    user =  get_user(username)
+    user = get_user(username)
 
     # Sets the identity of the user logged in.
     setGlobalIdentity(user)

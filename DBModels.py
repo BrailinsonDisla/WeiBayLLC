@@ -39,9 +39,6 @@ class User(UserMixin):
     # Defines the bank account foreign key.
     bankAccountFK = database.Column(database.Integer)
 
-    # Defines the authentication status.
-    authenticated = database.Column(database.Boolean, default=False)
-
     # Defines the get_id() function.
     def get_id(self):
         return self.username
