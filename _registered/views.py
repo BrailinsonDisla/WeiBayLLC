@@ -10,6 +10,9 @@ from flask_login import current_user, logout_user, login_required
 # Imports the flask website application.
 from WeiBayLLC import WeiBayLLC_App
 
+#Import Banking Functions
+from Systems.bankManagement import *
+
 # Initializes the blueprint for the _registered, the registered users.
 _registered = Blueprint('_registered', __name__, template_folder='_templates', static_folder='_static')
 
@@ -17,6 +20,8 @@ _registered = Blueprint('_registered', __name__, template_folder='_templates', s
 @_registered.route('/profile')
 @login_required
 def profile():
+    Testing = Banking()
+    Testing.show_balance()
     return render_template('profile.html')  # fix
 
 @_registered.route('/profile/<username>', methods=['GET', 'POST'])

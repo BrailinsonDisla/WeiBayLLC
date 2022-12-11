@@ -12,11 +12,6 @@
                 <img class="admin-pic" src="/static/img/_admin/admin.png" alt="admin">
                 <h4>Hello, ## Admin Name ##</h4>
                 <div class="btn-group-vertical" role="group">
-<!--                    <button type="button" class="btn btn-primary">User Management</button>-->
-<!--                    <button type="button" class="btn btn-primary">Product Management</button>-->
-<!--                    <button type="button" class="btn btn-primary">Reports</button>-->
-<!--                    <button type="button" class="btn btn-primary">Statistics</button>-->
-
                     <input type="radio" class="btn-check" name="btnradio" id="btnradio1" onclick="op1()" checked>
                     <label class="btn btn-outline-primary" for="btnradio1">User Management</label>
 
@@ -46,26 +41,30 @@
                         <label class="btn btn-outline-primary" for="btnradio1-4">Banned Users</label>
                     </div>
                     <table class="table align-middle" id="table1-1">
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
-                            <th>Email</th>
-                            <th>Role</th>
-                            <th>Edit (Button)</th>
-                            <th>Remove (Button)</th>
-                            <th>Ban (Button)</th>
-                        </tr>
-                        <tr>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                        </tr>
+                        <thead>
+                            <tr>
+                                <th colspan="100%">First Name</th>
+                                <th colspan="100%">Last Name</th>
+                                <th colspan="100%">Username</th>
+                                <th colspan="100%">Email</th>
+                                <th colspan="100%">Role</th>
+                                <th colspan="100%"></th>
+                                <th colspan="100%"></th>
+                                <th colspan="100%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="100%">dummy</td>
+                                <td colspan="100%">dummy</td>
+                                <td colspan="100%">dummy</td>
+                                <td colspan="100%">dummy</td>
+                                <td colspan="100%">dummy</td>
+                                <td colspan="100%"><button type="button" class="btn">Edit</button></td>
+                                <td colspan="100%"><button type="button" class="btn">Remove</button></td>
+                                <td colspan="100%"><button type="button" class="btn">Ban</button></td>
+                            </tr>
+                        </tbody>
                     </table>
 
                     <table class="table align-middle" id="table1-2">
