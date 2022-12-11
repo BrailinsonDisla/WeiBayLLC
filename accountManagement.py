@@ -338,7 +338,6 @@ def authenticate(username: str, pswd: str):
         if dbCursor.rowcount == 1:
             # Checks if the password is correct.
             if check_password_hash(user_data[5], pswd):
-
                 # Checks if the current user is anonymous.
                 if anonymous():
                     # Gets the user in the context of the User model.
@@ -420,10 +419,8 @@ guest_perm = Permission(RoleNeed(default_gest_role))
 
 @login_manager.user_loader
 def load_user(username: str): # Defines the user loader for the login manager.
-
     # Gets the user logged in.
     user = get_user(username)
-
 
     # Sets the identity of the user logged in.
     setGlobalIdentity(user)
@@ -456,8 +453,21 @@ def setGlobalIdentity(user: User):
 
 # Checks if the current user is anonymous.
 def anonymous():
-    return current_user == None or not hasattr(current_user, 'authenticated')
-
+    return isinstance(current_user, Anonymous)
 # Checks if the current identity is anonymous.
 def anonymousIdentity():
     return g.identity == None or not hasattr(g.identity, 'id')
+
+# Checks if the current user is admin.
+def is_admin():
+    if not anonymous():
+        return g.identity.can(admin_perm)
+
+# Checks if the current user is a registered user.
+def is_registered_user():
+    if not anonymous():
+        return g.identity.can(registered_perm)
+
+# Checks if the current user is a guest user.
+def is_guest_user():
+    return anonymous()
