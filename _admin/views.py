@@ -5,7 +5,6 @@ from flask import Blueprint, render_template, redirect, url_for
 
 from accountManagement import is_admin, login_required
 
-
 # Initializes the blueprint for the _admin, the administrators.
 _admin = Blueprint('_admin', __name__, template_folder='_templates', static_folder='_static')
 
