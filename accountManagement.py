@@ -1,17 +1,17 @@
 # Imports the tools required from flask_login for Permission Management.
-from flask_principal import Principal, Permission, RoleNeed, Identity, identity_changed, identity_loaded
+from flask_principal import Principal, Permission, RoleNeed, Identity, AnonymousIdentity
 
 # Imports the hashing functionalities from werkzeug.security for authentication.
 from werkzeug.security import generate_password_hash, check_password_hash
 
+# Imports the tools required from flask_login for Login Management.
+from flask_login import LoginManager, login_user, current_user, login_required
+
 # Imports the regular expression module (as regEx) for pattern matching.
 import re as regEx
 
-# Imports the tools required from flask_login for Login Management.
-from flask_login import LoginManager, login_user, current_user
-
 # Imports the flask website application and required tools.
-from WeiBayLLC import WeiBayLLC_App
+from WeiBayLLC import WeiBayLLC_App, g
 
 # Imports the connection from the DB Connection module.
 from DBConnection import dbConnection, dbCursor
@@ -20,7 +20,7 @@ from DBConnection import dbConnection, dbCursor
 from UD_Exceptions import *
 
 # Imports required DB model.
-from DBModels import User
+from DBModels import User, Anonymous
 
 # Defines the admin role.
 default_admin_role = 'ADMIN'
@@ -251,6 +251,77 @@ def banRegisteredUser(username: str):
         # TODO: Inform the database admin that the user has not been banned.
         print('FAILED TO BAN USER:', user_data, flush=True)
 
+# Creates an instance of Principal.
+principal = Principal()
+
+# Creates an instance of the Login Manager.
+login_manager = LoginManager()
+
+# Initializes the Principal for the website application.
+principal.init_app(WeiBayLLC_App)
+
+# Initializes the Login Manager for the website application.
+login_manager.init_app(WeiBayLLC_App)
+
+# Sets the default login page for the Login Manager.
+login_manager.login_view = '_default.login'
+
+# Sets the default anonymous user for the Login Manager.
+login_manager.anonymous_user = Anonymous
+
+# Gets the user in the context of the User model.
+def get_user(username: str):
+    # Cleans up the input for username.
+    username = username.lower()
+
+    try:
+        # Gets the information for the registered user.
+        dbCursor.execute("SELECT * FROM RegisteredUsers WHERE `Username` = %s", (username,))
+
+        # Fetches the first result of the query.
+        user_data = dbCursor.fetchone()
+
+        # Checks if a user exists.
+        if dbCursor.rowcount == 1:
+            # Defines a user using the User model.
+            user = User()
+
+            # Sets the user ID.
+            user.user_id = user_data[0]
+
+            # Sets the first name.
+            user.f_name = user_data[1]
+
+            # Sets the last name.
+            user.l_name = user_data[2]
+
+            # Sets the username.
+            user.username = user_data[3]
+
+            # Sets the email.
+            user.email = user_data[4]
+
+            # Sets the password.
+            # user.password = user_data[5]
+
+            # Sets the role.
+            user.role = user_data[6]
+
+            # Sets the phone number.
+            user.phone = user_data[7]
+
+            # Sets the address FK.
+            user.addressFK = user_data[8]
+
+            # Sets the bank account FK.
+            user.bankAccountFK = user_data[9]
+
+            # Returns the user.
+            return user
+
+    except Exception as e:
+        print('FAILED TO GET USER:', username, flush=True)
+
 # Authenticates a user into the application system.
 def authenticate(username: str, pswd: str):
     # Cleans up the input for username.
@@ -258,8 +329,7 @@ def authenticate(username: str, pswd: str):
 
     try:
         # Gets the information to authenticate the user.
-        dbCursor.execute("SELECT `User ID`, `First Name`, `Last Name`, `Username`, `Email`, `Password`, `Role`, "
-                         "`Phone`, `Address`, `Bank Account` FROM RegisteredUsers WHERE `Username` = %s", (username,))
+        dbCursor.execute("SELECT * FROM RegisteredUsers WHERE `Username` = %s", (username,))
 
         # Fetches the first result of the query.
         user_data = dbCursor.fetchone()
@@ -268,17 +338,22 @@ def authenticate(username: str, pswd: str):
         if dbCursor.rowcount == 1:
             # Checks if the password is correct.
             if check_password_hash(user_data[5], pswd):
-                # Gets the user in the context of the User model.
-                user = get_user(username)
+                # Checks if the current user is anonymous.
+                if anonymous():
+                    # Gets the user in the context of the User model.
+                    user = get_user(username)
 
-                # Logs the user in - sets up session variables for 'current_user'.
-                login_user(user)
+                    # Logs the user in - sets up session variables for 'current_user'.
+                    login_user(user)
 
-                # Signals the principal for the identity change.
-                identity_changed.send(WeiBayLLC_App, identity=Identity(user.user_id))
+                    # Sets the identity for the user logged in.
+                    setGlobalIdentity(user)
 
-                # Indicate successful authentication.
-                return True
+                    # # Sets the identity of the user logged in.
+                    # principal.set_identity(g.identity)
+
+                    # Indicate successful authentication.
+                    return True
             else:
                 # Raise an IncorrectPassword exception.
                 raise IncorrectPassword
@@ -324,97 +399,62 @@ def authenticate(username: str, pswd: str):
     except Exception as e:
         print('FAILED TO AUTHENTICATE:', username, flush=True)
 
-# Creates an instance of the Login Manager.
-login_manager = LoginManager()
-
-# Sets the default login page for the Login Manager.
-login_manager.login_view = '_default.login'
-
-# Initializes the Login Manager for the website application.
-login_manager.init_app(WeiBayLLC_App)
-
-# Gets the user in the context of the User model.
-def get_user(username: str):
-    # Cleans up the input for username.
-    username = username.lower()
-
-    try:
-        # Gets the information for the registered user.
-        dbCursor.execute("SELECT * FROM RegisteredUsers WHERE `Username` = %s", (username,))
-
-        # Fetches the first result of the query.
-        user_data = dbCursor.fetchone()
-
-        # Checks if a user exists.
-        if dbCursor.rowcount == 1:
-            # Defines a user using the User model.
-            user = User()
-
-            # Sets the user ID.
-            user.user_id = user_data[0]
-
-            # Sets the first name.
-            user.f_name = user_data[1]
-
-            # Sets the last name.
-            user.l_name = user_data[2]
-
-            # Sets the username.
-            user.username = user_data[3]
-
-            # Sets the email.
-            user.email = user_data[4]
-
-            # Sets the role.
-            user.role = user_data[5]
-
-            # Sets the phone number.
-            user.phone = user_data[6]
-
-            # Sets the address FK.
-            user.addressFK = user_data[7]
-
-            # Sets the bank account FK.
-            user.bankAccountFK = user_data[8]
-
-            # Sets the authentication status.
-            user.authenticated = True
-
-            # Returns the user.
-            return user
-
-    except Exception as e:
-        print('FAILED TO GET USER:', username, flush=True)
-
-@login_manager.user_loader
-def load_user(username: str): # Defines the user loader for the login manager.
-    return get_user(username)
-
-# Creates an instance of the Principal.
-principal = Principal()
-
-# Initializes the Principal for the website application.
-principal.init_app(WeiBayLLC_App)
+# Create an admin role.
+admin_role = RoleNeed(default_admin_role)
 
 # Create an admin permission.
 admin_perm = Permission(RoleNeed(default_admin_role))
 
+# Create a reg user role.
+registered_role = RoleNeed(default_registered_role)
+
 # Create a reg user permission.
-registered_perm = Permission(RoleNeed(default_registered_role))
+registered_perm = RoleNeed(default_registered_role)
+
+# Create an anonymous role.
+guest_role = RoleNeed(default_gest_role)
 
 # Create an anonymous permission.
 guest_perm = Permission(RoleNeed(default_gest_role))
 
-@identity_loaded.connect_via(WeiBayLLC_App)
-def on_identity_loaded(sender, identity):
-    # Sets the identity of the user.
-    identity.user = current_user
+@login_manager.user_loader
+def load_user(username: str): # Defines the user loader for the login manager.
+    # Gets the user logged in.
+    user =  get_user(username)
 
-    # Checks if the current user is not anonymous.
-    if not anonymous():
-        # Sets the role of the user.
-        identity.provides.add(RoleNeed(current_user.role))
+    # Sets the identity of the user logged in.
+    setGlobalIdentity(user)
+
+    # Returns the loaded user.
+    return user
+
+# Sets the identity and its permissions for the user.
+def setGlobalIdentity(user: User):
+    # Gets the role of the user logged in.
+    role = user.role
+
+    # Creates an identity for the user logged in.
+    identity = Identity(user.username)
+
+
+    # Sets the user for the identity.
+    identity.user = user
+
+    # Grant permissions based on role.
+    if role == default_admin_role:
+        identity.provides.add(admin_role)
+    elif role == default_registered_role:
+        identity.provides.add(registered_role)
+    else:
+        identity.provides.add(guest_role)
+
+    # Returns the identity.
+    g.identity = identity
 
 # Checks if the current user is anonymous.
 def anonymous():
     return current_user == None or not hasattr(current_user, 'authenticated')
+
+# Checks if the current identity is anonymous.
+def anonymousIdentity():
+    return g.identity == None or not hasattr(g.identity, 'id')

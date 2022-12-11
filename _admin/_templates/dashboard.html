@@ -5,403 +5,403 @@
 {% endblock %}
 
 {% block body %}
-{#<body>#}
-{#    <div class="container">#}
-{#        <div class="row">#}
-{#            <div class="col-2 justify-content-center">#}
-{#                <img class="admin-pic" src="/static/img/for_admin/admin.png" alt="admin">#}
-{#                <h4>Hello, ## Admin Name ##</h4>#}
-{#                <div class="btn-group-vertical" role="group">#}
-{#<!--                    <button type="button" class="btn btn-primary">User Management</button>-->#}
-{#<!--                    <button type="button" class="btn btn-primary">Product Management</button>-->#}
-{#<!--                    <button type="button" class="btn btn-primary">Reports</button>-->#}
-{#<!--                    <button type="button" class="btn btn-primary">Statistics</button>-->#}
-{##}
-{#                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" onclick="op1()" checked>#}
-{#                    <label class="btn btn-outline-primary" for="btnradio1">User Management</label>#}
-{##}
-{#                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" onclick="op2()">#}
-{#                    <label class="btn btn-outline-primary" for="btnradio2">Product Management</label>#}
-{##}
-{#                    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" onclick="op3()">#}
-{#                    <label class="btn btn-outline-primary" for="btnradio3">Reports</label>#}
-{##}
-{#                    <input type="radio" class="btn-check" name="btnradio" id="btnradio4" onclick="op4()">#}
-{#                    <label class="btn btn-outline-primary" for="btnradio4">Statistics</label>#}
-{#                </div>#}
-{#            </div>#}
-{#            <div class="col-10 text-center">#}
-{#                <div class="container" id="section1">#}
-{#                    <div class="btn-group" role="group" id="btn-bar-1">#}
-{#                        <input type="radio" class="btn-check" name="btnradio2" id="btnradio1-1" onclick="op1_1()" checked>#}
-{#                        <label class="btn btn-outline-primary" for="btnradio1-1">Registered Users</label>#}
-{##}
-{#                        <input type="radio" class="btn-check" name="btnradio2" id="btnradio1-2" onclick="op1_2()">#}
-{#                        <label class="btn btn-outline-primary" for="btnradio1-2">Pending Users</label>#}
-{##}
-{#                        <input type="radio" class="btn-check" name="btnradio2" id="btnradio1-3" onclick="op1_3()">#}
-{#                        <label class="btn btn-outline-primary" for="btnradio1-3">Denied Users</label>#}
-{##}
-{#                        <input type="radio" class="btn-check" name="btnradio2" id="btnradio1-4" onclick="op1_4()">#}
-{#                        <label class="btn btn-outline-primary" for="btnradio1-4">Banned Users</label>#}
-{#                    </div>#}
-{#                    <table class="table align-middle" id="table1-1">#}
-{#                        <tr>#}
-{#                            <th>First Name</th>#}
-{#                            <th>Last Name</th>#}
-{#                            <th>Username</th>#}
-{#                            <th>Email</th>#}
-{#                            <th>Role</th>#}
-{#                            <th>Edit (Button)</th>#}
-{#                            <th>Remove (Button)</th>#}
-{#                            <th>Ban (Button)</th>#}
-{#                        </tr>#}
-{#                        <tr>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                        </tr>#}
-{#                    </table>#}
-{##}
-{#                    <table class="table align-middle" id="table1-2">#}
-{#                        <tr>#}
-{#                            <th>First Name</th>#}
-{#                            <th>Last Name</th>#}
-{#                            <th>Username</th>#}
-{#                            <th>Email</th>#}
-{#                            <th>Role</th>#}
-{#                            <th>Approve (Button)</th>#}
-{#                            <th>Deny (Button)</th>#}
-{#                        </tr>#}
-{#                        <tr>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                        </tr>#}
-{#                    </table>#}
-{##}
-{#                    <table class="table align-middle" id="table1-3">#}
-{#                        <tr>#}
-{#                            <th>First Name</th>#}
-{#                            <th>Last Name</th>#}
-{#                            <th>Email</th>#}
-{#                            <th>Reason</th>#}
-{#                        </tr>#}
-{#                        <tr>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                        </tr>#}
-{#                    </table>#}
-{##}
-{#                    <table class="table align-middle" id="table1-4">#}
-{#                        <tr>#}
-{#                            <th>First Name</th>#}
-{#                            <th>Last Name</th>#}
-{#                            <th>Email</th>#}
-{#                            <th>Role</th>#}
-{#                            <th>Reason</th>#}
-{#                        </tr>#}
-{#                        <tr>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                        </tr>#}
-{#                    </table>#}
-{#                </div>#}
-{#                <div class="container" id="section2">#}
-{#                    <div class="btn-group" role="group" id="btn-bar-2">#}
-{#                        <input type="radio" class="btn-check" name="btnradio3" id="btnradio2-1" onclick="op2_1()" checked>#}
-{#                        <label class="btn btn-outline-primary" for="btnradio2-1">Listed Products</label>#}
-{##}
-{#                        <input type="radio" class="btn-check" name="btnradio3" id="btnradio2-2" onclick="op2_2()">#}
-{#                        <label class="btn btn-outline-primary" for="btnradio2-2">Pending Products</label>#}
-{##}
-{#                        <input type="radio" class="btn-check" name="btnradio3" id="btnradio2-3" onclick="op2_3()">#}
-{#                        <label class="btn btn-outline-primary" for="btnradio2-3">Denied Products</label>#}
-{##}
-{#                        <input type="radio" class="btn-check" name="btnradio3" id="btnradio2-4" onclick="op2_4()">#}
-{#                        <label class="btn btn-outline-primary" for="btnradio2-4">Banned Products</label>#}
-{#                    </div>#}
-{#                    <table class="table" id="table2-1">#}
-{#                        <tr>#}
-{#                            <th>Name</th>#}
-{#                            <th>Condition</th>#}
-{#                            <th>Price</th>#}
-{#                            <th>Description</th>#}
-{#                            <th>Remove (Button)</th>#}
-{#                        </tr>#}
-{#                        <tr>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                        </tr>#}
-{#                    </table>#}
-{##}
-{#                    <table class="table" id="table2-2">#}
-{#                        <tr>#}
-{#                            <th>Name</th>#}
-{#                            <th>Condition</th>#}
-{#                            <th>Price</th>#}
-{#                            <th>Description</th>#}
-{#                            <th>Approve (Button)</th>#}
-{#                            <th>Deny (Button)</th>#}
-{#                        </tr>#}
-{#                        <tr>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                        </tr>#}
-{#                    </table>#}
-{##}
-{#                    <table class="table" id="table2-3">#}
-{#                        <tr>#}
-{#                            <th>Name</th>#}
-{#                            <th>Condition</th>#}
-{#                            <th>Price</th>#}
-{#                            <th>Description</th>#}
-{#                            <th>Reason</th>#}
-{#                        </tr>#}
-{#                        <tr>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                        </tr>#}
-{#                    </table>#}
-{##}
-{#                    <table class="table" id="table2-4">#}
-{#                        <tr>#}
-{#                            <th>Name</th>#}
-{#                            <th>Condition</th>#}
-{#                            <th>Price</th>#}
-{#                            <th>Description</th>#}
-{#                            <th>Reason</th>#}
-{#                        </tr>#}
-{#                        <tr>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                        </tr>#}
-{#                    </table>#}
-{#                </div>#}
-{#                <div class="container" id="section3">#}
-{#                    <div class="btn-group" role="group" id="btn-bar-3">#}
-{#                        <input type="radio" class="btn-check" name="btnradio4" id="btnradio3-1" onclick="op3_1()" checked>#}
-{#                        <label class="btn btn-outline-primary" for="btnradio3-1">All Reports</label>#}
-{##}
-{#                        <input type="radio" class="btn-check" name="btnradio4" id="btnradio3-2" onclick="op3_2()">#}
-{#                        <label class="btn btn-outline-primary" for="btnradio3-2">Reports to Process</label>#}
-{##}
-{#                        <input type="radio" class="btn-check" name="btnradio4" id="btnradio3-3" onclick="op3_3()">#}
-{#                        <label class="btn btn-outline-primary" for="btnradio3-3">Approved Reports</label>#}
-{##}
-{#                        <input type="radio" class="btn-check" name="btnradio4" id="btnradio3-4" onclick="op3_4()">#}
-{#                        <label class="btn btn-outline-primary" for="btnradio3-4">Denied Reports</label>#}
-{#                    </div>#}
-{#                    <table class="table" id="table3-1">#}
-{#                        <tr>#}
-{#                            <th>Product ID</th>#}
-{#                            <th>Posting User</th>#}
-{#                            <th>Reporting User</th>#}
-{#                            <th>Reason</th>#}
-{#                        </tr>#}
-{#                        <tr>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                        </tr>#}
-{#                    </table>#}
-{##}
-{#                    <table class="table" id="table3-2">#}
-{#                        <tr>#}
-{#                            <th>Product ID</th>#}
-{#                            <th>Posting User</th>#}
-{#                            <th>Reporting User</th>#}
-{#                            <th>Reason</th>#}
-{#                            <th>Approve (Button)</th>#}
-{#                            <th>Deny (Button)</th>#}
-{#                        </tr>#}
-{#                        <tr>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                        </tr>#}
-{#                    </table>#}
-{##}
-{#                    <table class="table" id="table3-3">#}
-{#                        <tr>#}
-{#                            <th>Product ID</th>#}
-{#                            <th>Posting User</th>#}
-{#                            <th>Reporting User</th>#}
-{#                            <th>Reason</th>#}
-{#                        </tr>#}
-{#                        <tr>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                        </tr>#}
-{#                    </table>#}
-{##}
-{#                    <table class="table" id="table3-4">#}
-{#                        <tr>#}
-{#                            <th>Product ID</th>#}
-{#                            <th>Posting User</th>#}
-{#                            <th>Reporting User</th>#}
-{#                            <th>Reason</th>#}
-{#                        </tr>#}
-{#                        <tr>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                            <td>dummy</td>#}
-{#                        </tr>#}
-{#                    </table>#}
-{#                </div>#}
-{#                <div class="container" id="section4">#}
-{##}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{##}
-{#    <script>#}
-{#        function op1() {#}
-{#            document.getElementById("section1").style.display = "block";#}
-{#            document.getElementById("section2").style.display = "none";#}
-{#            document.getElementById("section3").style.display = "none";#}
-{#            document.getElementById("section4").style.display = "none";#}
-{#        }#}
-{##}
-{#        function op1_1() {#}
-{#            document.getElementById("table1-1").style.display = "block";#}
-{#            document.getElementById("table1-2").style.display = "none";#}
-{#            document.getElementById("table1-3").style.display = "none";#}
-{#            document.getElementById("table1-4").style.display = "none";#}
-{#        }#}
-{##}
-{#        function op1_2() {#}
-{#            document.getElementById("table1-1").style.display = "none";#}
-{#            document.getElementById("table1-2").style.display = "block";#}
-{#            document.getElementById("table1-3").style.display = "none";#}
-{#            document.getElementById("table1-4").style.display = "none";#}
-{#        }#}
-{##}
-{#        function op1_3() {#}
-{#            document.getElementById("table1-1").style.display = "none";#}
-{#            document.getElementById("table1-2").style.display = "none";#}
-{#            document.getElementById("table1-3").style.display = "block";#}
-{#            document.getElementById("table1-4").style.display = "none";#}
-{#        }#}
-{##}
-{#        function op1_4() {#}
-{#            document.getElementById("table1-1").style.display = "none";#}
-{#            document.getElementById("table1-2").style.display = "none";#}
-{#            document.getElementById("table1-3").style.display = "none";#}
-{#            document.getElementById("table1-4").style.display = "block";#}
-{#        }#}
-{##}
-{#        function op2() {#}
-{#            document.getElementById("section1").style.display = "none";#}
-{#            document.getElementById("section2").style.display = "block";#}
-{#            document.getElementById("section3").style.display = "none";#}
-{#            document.getElementById("section4").style.display = "none";#}
-{#        }#}
-{##}
-{#        function op2_1() {#}
-{#            document.getElementById("table2-1").style.display = "block";#}
-{#            document.getElementById("table2-2").style.display = "none";#}
-{#            document.getElementById("table2-3").style.display = "none";#}
-{#            document.getElementById("table2-4").style.display = "none";#}
-{#        }#}
-{##}
-{#        function op2_2() {#}
-{#            document.getElementById("table2-1").style.display = "none";#}
-{#            document.getElementById("table2-2").style.display = "block";#}
-{#            document.getElementById("table2-3").style.display = "none";#}
-{#            document.getElementById("table2-4").style.display = "none";#}
-{#        }#}
-{##}
-{#        function op2_3() {#}
-{#            document.getElementById("table2-1").style.display = "none";#}
-{#            document.getElementById("table2-2").style.display = "none";#}
-{#            document.getElementById("table2-3").style.display = "block";#}
-{#            document.getElementById("table2-4").style.display = "none";#}
-{#        }#}
-{##}
-{#        function op2_4() {#}
-{#            document.getElementById("table2-1").style.display = "none";#}
-{#            document.getElementById("table2-2").style.display = "none";#}
-{#            document.getElementById("table2-3").style.display = "none";#}
-{#            document.getElementById("table2-4").style.display = "block";#}
-{#        }#}
-{##}
-{#        function op3() {#}
-{#            document.getElementById("section1").style.display = "none";#}
-{#            document.getElementById("section2").style.display = "none";#}
-{#            document.getElementById("section3").style.display = "block";#}
-{#            document.getElementById("section4").style.display = "none";#}
-{#        }#}
-{##}
-{#        function op3_1() {#}
-{#            document.getElementById("table3-1").style.display = "block";#}
-{#            document.getElementById("table3-2").style.display = "none";#}
-{#            document.getElementById("table3-3").style.display = "none";#}
-{#            document.getElementById("table3-4").style.display = "none";#}
-{#        }#}
-{##}
-{#        function op3_2() {#}
-{#            document.getElementById("table3-1").style.display = "none";#}
-{#            document.getElementById("table3-2").style.display = "block";#}
-{#            document.getElementById("table3-3").style.display = "none";#}
-{#            document.getElementById("table3-4").style.display = "none";#}
-{#        }#}
-{##}
-{#        function op3_3() {#}
-{#            document.getElementById("table3-1").style.display = "none";#}
-{#            document.getElementById("table3-2").style.display = "none";#}
-{#            document.getElementById("table3-3").style.display = "block";#}
-{#            document.getElementById("table3-4").style.display = "none";#}
-{#        }#}
-{##}
-{#        function op3_4() {#}
-{#            document.getElementById("table3-1").style.display = "none";#}
-{#            document.getElementById("table3-2").style.display = "none";#}
-{#            document.getElementById("table3-3").style.display = "none";#}
-{#            document.getElementById("table3-4").style.display = "block";#}
-{#        }#}
-{##}
-{#        function op4() {#}
-{#            document.getElementById("section1").style.display = "none";#}
-{#            document.getElementById("section2").style.display = "none";#}
-{#            document.getElementById("section3").style.display = "none";#}
-{#            document.getElementById("section4").style.display = "block";#}
-{#        }#}
-{#    </script>#}
-{#</body>#}
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-2 justify-content-center">
+                <img class="admin-pic" src="/static/img/_admin/admin.png" alt="admin">
+                <h4>Hello, ## Admin Name ##</h4>
+                <div class="btn-group-vertical" role="group">
+<!--                    <button type="button" class="btn btn-primary">User Management</button>-->
+<!--                    <button type="button" class="btn btn-primary">Product Management</button>-->
+<!--                    <button type="button" class="btn btn-primary">Reports</button>-->
+<!--                    <button type="button" class="btn btn-primary">Statistics</button>-->
+
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" onclick="op1()" checked>
+                    <label class="btn btn-outline-primary" for="btnradio1">User Management</label>
+
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" onclick="op2()">
+                    <label class="btn btn-outline-primary" for="btnradio2">Product Management</label>
+
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" onclick="op3()">
+                    <label class="btn btn-outline-primary" for="btnradio3">Reports</label>
+
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio4" onclick="op4()">
+                    <label class="btn btn-outline-primary" for="btnradio4">Statistics</label>
+                </div>
+            </div>
+            <div class="col-10 text-center">
+                <div class="container" id="section1">
+                    <div class="btn-group" role="group" id="btn-bar-1">
+                        <input type="radio" class="btn-check" name="btnradio2" id="btnradio1-1" onclick="op1_1()" checked>
+                        <label class="btn btn-outline-primary" for="btnradio1-1">Registered Users</label>
+
+                        <input type="radio" class="btn-check" name="btnradio2" id="btnradio1-2" onclick="op1_2()">
+                        <label class="btn btn-outline-primary" for="btnradio1-2">Pending Users</label>
+
+                        <input type="radio" class="btn-check" name="btnradio2" id="btnradio1-3" onclick="op1_3()">
+                        <label class="btn btn-outline-primary" for="btnradio1-3">Denied Users</label>
+
+                        <input type="radio" class="btn-check" name="btnradio2" id="btnradio1-4" onclick="op1_4()">
+                        <label class="btn btn-outline-primary" for="btnradio1-4">Banned Users</label>
+                    </div>
+                    <table class="table align-middle" id="table1-1">
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Edit (Button)</th>
+                            <th>Remove (Button)</th>
+                            <th>Ban (Button)</th>
+                        </tr>
+                        <tr>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                        </tr>
+                    </table>
+
+                    <table class="table align-middle" id="table1-2">
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Approve (Button)</th>
+                            <th>Deny (Button)</th>
+                        </tr>
+                        <tr>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                        </tr>
+                    </table>
+
+                    <table class="table align-middle" id="table1-3">
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Reason</th>
+                        </tr>
+                        <tr>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                        </tr>
+                    </table>
+
+                    <table class="table align-middle" id="table1-4">
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Reason</th>
+                        </tr>
+                        <tr>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="container" id="section2">
+                    <div class="btn-group" role="group" id="btn-bar-2">
+                        <input type="radio" class="btn-check" name="btnradio3" id="btnradio2-1" onclick="op2_1()" checked>
+                        <label class="btn btn-outline-primary" for="btnradio2-1">Listed Products</label>
+
+                        <input type="radio" class="btn-check" name="btnradio3" id="btnradio2-2" onclick="op2_2()">
+                        <label class="btn btn-outline-primary" for="btnradio2-2">Pending Products</label>
+
+                        <input type="radio" class="btn-check" name="btnradio3" id="btnradio2-3" onclick="op2_3()">
+                        <label class="btn btn-outline-primary" for="btnradio2-3">Denied Products</label>
+
+                        <input type="radio" class="btn-check" name="btnradio3" id="btnradio2-4" onclick="op2_4()">
+                        <label class="btn btn-outline-primary" for="btnradio2-4">Banned Products</label>
+                    </div>
+                    <table class="table" id="table2-1">
+                        <tr>
+                            <th>Name</th>
+                            <th>Condition</th>
+                            <th>Price</th>
+                            <th>Description</th>
+                            <th>Remove (Button)</th>
+                        </tr>
+                        <tr>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                        </tr>
+                    </table>
+
+                    <table class="table" id="table2-2">
+                        <tr>
+                            <th>Name</th>
+                            <th>Condition</th>
+                            <th>Price</th>
+                            <th>Description</th>
+                            <th>Approve (Button)</th>
+                            <th>Deny (Button)</th>
+                        </tr>
+                        <tr>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                        </tr>
+                    </table>
+
+                    <table class="table" id="table2-3">
+                        <tr>
+                            <th>Name</th>
+                            <th>Condition</th>
+                            <th>Price</th>
+                            <th>Description</th>
+                            <th>Reason</th>
+                        </tr>
+                        <tr>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                        </tr>
+                    </table>
+
+                    <table class="table" id="table2-4">
+                        <tr>
+                            <th>Name</th>
+                            <th>Condition</th>
+                            <th>Price</th>
+                            <th>Description</th>
+                            <th>Reason</th>
+                        </tr>
+                        <tr>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="container" id="section3">
+                    <div class="btn-group" role="group" id="btn-bar-3">
+                        <input type="radio" class="btn-check" name="btnradio4" id="btnradio3-1" onclick="op3_1()" checked>
+                        <label class="btn btn-outline-primary" for="btnradio3-1">All Reports</label>
+
+                        <input type="radio" class="btn-check" name="btnradio4" id="btnradio3-2" onclick="op3_2()">
+                        <label class="btn btn-outline-primary" for="btnradio3-2">Reports to Process</label>
+
+                        <input type="radio" class="btn-check" name="btnradio4" id="btnradio3-3" onclick="op3_3()">
+                        <label class="btn btn-outline-primary" for="btnradio3-3">Approved Reports</label>
+
+                        <input type="radio" class="btn-check" name="btnradio4" id="btnradio3-4" onclick="op3_4()">
+                        <label class="btn btn-outline-primary" for="btnradio3-4">Denied Reports</label>
+                    </div>
+                    <table class="table" id="table3-1">
+                        <tr>
+                            <th>Product ID</th>
+                            <th>Posting User</th>
+                            <th>Reporting User</th>
+                            <th>Reason</th>
+                        </tr>
+                        <tr>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                        </tr>
+                    </table>
+
+                    <table class="table" id="table3-2">
+                        <tr>
+                            <th>Product ID</th>
+                            <th>Posting User</th>
+                            <th>Reporting User</th>
+                            <th>Reason</th>
+                            <th>Approve (Button)</th>
+                            <th>Deny (Button)</th>
+                        </tr>
+                        <tr>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                        </tr>
+                    </table>
+
+                    <table class="table" id="table3-3">
+                        <tr>
+                            <th>Product ID</th>
+                            <th>Posting User</th>
+                            <th>Reporting User</th>
+                            <th>Reason</th>
+                        </tr>
+                        <tr>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                        </tr>
+                    </table>
+
+                    <table class="table" id="table3-4">
+                        <tr>
+                            <th>Product ID</th>
+                            <th>Posting User</th>
+                            <th>Reporting User</th>
+                            <th>Reason</th>
+                        </tr>
+                        <tr>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                            <td>dummy</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="container" id="section4">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function op1() {
+            document.getElementById("section1").style.display = "block";
+            document.getElementById("section2").style.display = "none";
+            document.getElementById("section3").style.display = "none";
+            document.getElementById("section4").style.display = "none";
+        }
+
+        function op1_1() {
+            document.getElementById("table1-1").style.display = "block";
+            document.getElementById("table1-2").style.display = "none";
+            document.getElementById("table1-3").style.display = "none";
+            document.getElementById("table1-4").style.display = "none";
+        }
+
+        function op1_2() {
+            document.getElementById("table1-1").style.display = "none";
+            document.getElementById("table1-2").style.display = "block";
+            document.getElementById("table1-3").style.display = "none";
+            document.getElementById("table1-4").style.display = "none";
+        }
+
+        function op1_3() {
+            document.getElementById("table1-1").style.display = "none";
+            document.getElementById("table1-2").style.display = "none";
+            document.getElementById("table1-3").style.display = "block";
+            document.getElementById("table1-4").style.display = "none";
+        }
+
+        function op1_4() {
+            document.getElementById("table1-1").style.display = "none";
+            document.getElementById("table1-2").style.display = "none";
+            document.getElementById("table1-3").style.display = "none";
+            document.getElementById("table1-4").style.display = "block";
+        }
+
+        function op2() {
+            document.getElementById("section1").style.display = "none";
+            document.getElementById("section2").style.display = "block";
+            document.getElementById("section3").style.display = "none";
+            document.getElementById("section4").style.display = "none";
+        }
+
+        function op2_1() {
+            document.getElementById("table2-1").style.display = "block";
+            document.getElementById("table2-2").style.display = "none";
+            document.getElementById("table2-3").style.display = "none";
+            document.getElementById("table2-4").style.display = "none";
+        }
+
+        function op2_2() {
+            document.getElementById("table2-1").style.display = "none";
+            document.getElementById("table2-2").style.display = "block";
+            document.getElementById("table2-3").style.display = "none";
+            document.getElementById("table2-4").style.display = "none";
+        }
+
+        function op2_3() {
+            document.getElementById("table2-1").style.display = "none";
+            document.getElementById("table2-2").style.display = "none";
+            document.getElementById("table2-3").style.display = "block";
+            document.getElementById("table2-4").style.display = "none";
+        }
+
+        function op2_4() {
+            document.getElementById("table2-1").style.display = "none";
+            document.getElementById("table2-2").style.display = "none";
+            document.getElementById("table2-3").style.display = "none";
+            document.getElementById("table2-4").style.display = "block";
+        }
+
+        function op3() {
+            document.getElementById("section1").style.display = "none";
+            document.getElementById("section2").style.display = "none";
+            document.getElementById("section3").style.display = "block";
+            document.getElementById("section4").style.display = "none";
+        }
+
+        function op3_1() {
+            document.getElementById("table3-1").style.display = "block";
+            document.getElementById("table3-2").style.display = "none";
+            document.getElementById("table3-3").style.display = "none";
+            document.getElementById("table3-4").style.display = "none";
+        }
+
+        function op3_2() {
+            document.getElementById("table3-1").style.display = "none";
+            document.getElementById("table3-2").style.display = "block";
+            document.getElementById("table3-3").style.display = "none";
+            document.getElementById("table3-4").style.display = "none";
+        }
+
+        function op3_3() {
+            document.getElementById("table3-1").style.display = "none";
+            document.getElementById("table3-2").style.display = "none";
+            document.getElementById("table3-3").style.display = "block";
+            document.getElementById("table3-4").style.display = "none";
+        }
+
+        function op3_4() {
+            document.getElementById("table3-1").style.display = "none";
+            document.getElementById("table3-2").style.display = "none";
+            document.getElementById("table3-3").style.display = "none";
+            document.getElementById("table3-4").style.display = "block";
+        }
+
+        function op4() {
+            document.getElementById("section1").style.display = "none";
+            document.getElementById("section2").style.display = "none";
+            document.getElementById("section3").style.display = "none";
+            document.getElementById("section4").style.display = "block";
+        }
+    </script>
+</body>
 {% endblock %}
