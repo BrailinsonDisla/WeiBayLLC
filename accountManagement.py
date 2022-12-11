@@ -269,6 +269,7 @@ def authenticate(username: str, pswd: str):
             # Checks if the password is correct.
             if check_password_hash(user_data[5], pswd):
                 # Gets the user in the context of the User model.
+                print("\nCheck_password\n")
                 user = get_user(username)
 
                 # Logs the user in - sets up session variables for 'current_user'.
@@ -339,6 +340,7 @@ def get_user(username: str):
     username = username.lower()
 
     try:
+        print("\nin get user\n")
         # Gets the information for the registered user.
         dbCursor.execute("SELECT `User ID`, `First Name`, `Last Name`, `Username`, `Email`, `Password`, `Role`, "
                          "`Phone`, `Address`, `Bank Account` FROM RegisteredUsers WHERE `Username` = %s", (username,))
@@ -389,6 +391,7 @@ def get_user(username: str):
 
 @login_manager.user_loader
 def load_user(username: str): # Defines the user loader for the login manager.
+    print("\nload_user\n")
     return get_user(username)
 
 # Creates an instance of the Principal.
