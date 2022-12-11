@@ -436,7 +436,6 @@ def setGlobalIdentity(user: User):
     # Creates an identity for the user logged in.
     identity = Identity(user.username)
 
-
     # Sets the user for the identity.
     identity.user = user
 
@@ -454,6 +453,7 @@ def setGlobalIdentity(user: User):
 # Checks if the current user is anonymous.
 def anonymous():
     return isinstance(current_user, Anonymous)
+
 # Checks if the current identity is anonymous.
 def anonymousIdentity():
     return isinstance(g.identity, AnonymousIdentity)
