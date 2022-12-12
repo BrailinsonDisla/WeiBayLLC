@@ -146,3 +146,15 @@ def application_submitted(): # Page for submitted application.
         return redirect(url_for('_default.homepage'))
 
 ## DEFINE OTHER ROUTES
+
+@_default.route('/report_form')
+def report_form():
+    return render_template('report.html')
+
+@_default.route('/process_report', methods=['POST'])
+def process_report():
+    if request.method == 'POST':
+        subject = request.form.get('ireport-reason')
+        details = request.form.get('details')
+        # TODO Pass Report to the Database
+        return redirect(url_for('_default.homepage'))
