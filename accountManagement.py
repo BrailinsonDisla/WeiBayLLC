@@ -454,6 +454,7 @@ def setGlobalIdentity(user: User):
 # Checks if the current user is anonymous.
 def anonymous():
     return isinstance(current_user, Anonymous)
+
 # Checks if the current identity is anonymous.
 def anonymousIdentity():
     return g.identity == None or not hasattr(g.identity, 'id')

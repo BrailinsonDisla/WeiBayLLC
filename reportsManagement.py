@@ -8,22 +8,23 @@ from UD_Exceptions import *
 from generic import paragraphCase
 
 # Submits a report for approval.
-def submitReport(prod_id: int, seller_id: int, reporter_id: int, reason: str):
-    # Checks if the product id is invalid.
-    if prod_id <= 0:
-        # Raise an InvalidProductID exception.
-        raise InvalidProductID
+def submitReport(prod_id: int, seller_id: int, reporter_id: int, subject: str, reason: str):
+    #! Checks if the product id is invalid.
+    #// if prod_id <= 0:
+    #//     # Raise an InvalidProductID exception.
+    #//     raise InvalidProductID
 
-    # Checks if the seller id is invalid.
-    if seller_id <= 0:
-        # Raise an InvalidSellerID exception.
-        raise InvalidSellerID
+    #// # Checks if the seller id is invalid.
+    #// if seller_id <= 0:
+    #//     # Raise an InvalidSellerID exception.
+    #//     raise InvalidSellerID
 
-    # Checks if the reporter id is invalid.
-    if reporter_id <= 0:
-        # Raise an InvalidReporterID exception.
-        raise InvalidReporterID
-
+    #// # Checks if the reporter id is invalid.
+    #// if reporter_id <= 0:
+    #//     # Raise an InvalidReporterID exception.
+    #//     raise InvalidReporterID
+    #!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  
     # Cleans up the reason.
     reason = paragraphCase(reason)
 
@@ -34,6 +35,11 @@ def submitReport(prod_id: int, seller_id: int, reporter_id: int, reason: str):
     if reason in invalid_values:
         # Raise an InvalidReason exception.
         raise InvalidReason
+    
+    # Checks if the subject field is invalid.
+    if subject in invalid_values:
+        # Raise an InvalidSubject exception.
+        raise InvalidSubject
 
     # Stores report information.
     report_data = ''
@@ -79,11 +85,11 @@ def submitReport(prod_id: int, seller_id: int, reporter_id: int, reason: str):
             raise DeniedReport
 
         # Creates a tuple with the values to insert.
-        report_data = (prod_id, seller_id, reporter_id, reason)
+        report_data = (prod_id, seller_id, reporter_id, subject, reason)
 
         # Submits the report to the pending approval queue.
-        dbCursor.execute("INSERT INTO PendingApprovalReports (`Product ID`, `Seller ID`, `Reporter ID`, `Reason`) "
-                         "VALUES (%s, %s, %s, %s)", report_data)
+        dbCursor.execute("INSERT INTO PendingApprovalReports (`Product ID`, `Seller ID`, `Reporter ID`, `Subject`, `Reason`) "
+                         "VALUES (%s, %s, %s, %s,%s)", report_data)
 
         # Commits the changes to the database.
         dbConnection.commit()
@@ -110,7 +116,7 @@ def approveReport(prod_id: int, seller_id: int, reporter_id: int):
 
     try:
         # Gets the information for the report from the 'PendingApprovalReports' table.
-        dbCursor.execute("SELECT `Report ID`, `Product ID`, `Seller ID`, `Reporter ID`, `Reason` "
+        dbCursor.execute("SELECT `Report ID`, `Product ID`, `Seller ID`, `Reporter ID`, `Subject`, `Reason` "
                          "FROM PendingApprovalReports WHERE `Product ID` = %s AND `Seller ID` = %s "
                                                     "AND `Reporter ID` = %s", (prod_id, seller_id, reporter_id))
 
@@ -120,8 +126,8 @@ def approveReport(prod_id: int, seller_id: int, reporter_id: int):
         # Checks if the report exists in PendingApprovalReports.
         if dbCursor.rowcount == 1:
             # Approves the report -- add to the ApprovedReports table.
-            dbCursor.execute("INSERT INTO ApprovedReports (`Report ID`, `Product ID`, `Seller ID`, `Reporter ID`, `Reason`) "
-                             "VALUES (%s, %s, %s, %s, %s)", report_data)
+            dbCursor.execute("INSERT INTO ApprovedReports (`Report ID`, `Product ID`, `Seller ID`, `Reporter ID`, `Subject`, `Reason`) "
+                             "VALUES (%s, %s, %s, %s, %s, %s)", report_data)
 
             # Approves the report -- delete from the PendingApprovalReports table.
             dbCursor.execute("DELETE FROM PendingApprovalReports WHERE `Product ID` = %s AND `Seller ID` = %s "
@@ -142,7 +148,7 @@ def denyReport(prod_id: int, seller_id: int, reporter_id: int):
 
     try:
         # Gets the information for the report from the 'PendingApprovalReports' table.
-        dbCursor.execute("SELECT `Report ID`, `Product ID`, `Seller ID`, `Reporter ID`, `Reason` "
+        dbCursor.execute("SELECT `Report ID`, `Product ID`, `Seller ID`, `Reporter ID`, `Subject`, `Reason` "
                          "FROM PendingApprovalReports WHERE `Product ID` = %s AND `Seller ID` = %s "
                          "AND `Reporter ID` = %s", (prod_id, seller_id, reporter_id))
 
@@ -153,8 +159,8 @@ def denyReport(prod_id: int, seller_id: int, reporter_id: int):
         if dbCursor.rowcount == 1:
             # Denies the report -- add to the DeniedReports table.
             dbCursor.execute(
-                "INSERT INTO DeniedReports (`Report ID`, `Product ID`, `Seller ID`, `Reporter ID`, `Reason`) "
-                "VALUES (%s, %s, %s, %s, %s)", report_data)
+                "INSERT INTO DeniedReports (`Report ID`, `Product ID`, `Seller ID`, `Reporter ID`, `Subject`, `Reason`) "
+                "VALUES (%s, %s, %s, %s, %s, %s)", report_data)
 
             # Denies the report -- delete from the PendingApprovalReports table.
             dbCursor.execute("DELETE FROM PendingApprovalReports WHERE `Product ID` = %s AND `Seller ID` = %s "

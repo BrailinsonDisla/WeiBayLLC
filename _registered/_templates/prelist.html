@@ -20,7 +20,7 @@
     </nav>
     <h1>Start your listing</h1>
     
-    <form action="">
+    <form method="POST" action="{{ url_for('_registered.listing_form') }}">
         <div class="container">
             <div class="row">
                 <div class="col-6">
@@ -28,6 +28,7 @@
                         <label for="item-name" class="form-label">Item Title</label><br>
                         <input type="text" class="form-control" name="item-name" id="item-name" placeholder="Tell us what you're selling">
                     </div>
+
                     <div>
                         <label for="item-condition" class="form-label">Item Condition</label><br>
                         <select class="form-control" name="item-condition" id="item-condition">
@@ -36,25 +37,34 @@
                             <option>Used</option>
                         </select>
                     </div>
+                    
+                    <div>
+                        <label for="item-qty" class="form-label">Quanity</label>
+                        <input type="number" class="form-control" name="item-qty" id="item-qty" required min="1">
+                    </div>
+
                     <div>
                         <label for="item-price" class="form-label">Price</label>
                         <input type="number" class="form-control" name="item-price" id="item-price">
                     </div>
                 </div>
+
                 <div class="col-6">
                     <div>
                         <label for="item-description" class="form-label">Item Description</label>
                         <textarea class="form-control" name="item-description" id="item-description" rows="3" placeholder="Tell us about what you're selling"></textarea>
                     </div>
+
                     <div class="form-group">
                         <label for="image-upload">Upload Images</label>
-                        <input type="file" class="form-control-file" id="drop-area" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)"
+                        <input type="file" class="form-control-file" id="drop-area" name="item-image "ondrop="dropHandler(event)" ondragover="dragOverHandler(event)"
                         ondragleave="dragLeaveHandler(event)" multiple>
                             <p>Drop files here to upload</p>
                         </div>
                     </div>
                     <div id="image-preview"></div>
                 </div>
+
             </div>
             <div class="row">
                 <button type="submit" id="submit" class="btn btn-primary">submit</button>
