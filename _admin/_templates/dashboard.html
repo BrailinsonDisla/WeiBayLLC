@@ -1,426 +1,400 @@
-{% extends 'base.html' %}
+{% extends 'navbar.html' %}
 
-{% block head %}
+{% block head2 %}
 <link rel="stylesheet" href="/static/styles/_admin/dashboard.css">
 {% endblock %}
 
-{% block body %}
-<body>
-    <!-- Nav bar -->
-    <nav class="navbar sticky-top justify-content-center">
-        <div class="container-fluid">
-            <a href="/home">
-                <img src="/static/img/logos/logo.png" alt="weibay_logo" id="logo">
-            </a>
-            <form role="search">
-                <input type="search" placeholder="Search" name="search">
-                <button class="btn" type="submit">Search</button>
-            </form>
-            <ul class="nav">
-                <li class="nav-item">
-                    <a id="login-link" class="nav-link" href="/login">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a id="sign-up-link" class="nav-link" href="/apply">Sign Up</a>
-                </li>
-                <li class="nav-item">
-                    <a id="sign-up-link" class="nav-link" href="/logout">Sign Out</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-2 justify-content-center">
+            <img class="admin-pic" src="/static/img/_admin/admin.png" alt="admin">
+            <h4>Hello, ## Admin Name ##</h4>
+            <div class="btn-group-vertical" role="group">
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" onclick="op1()" checked>
+                <label class="btn btn-outline-primary" for="btnradio1">User Management</label>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-2 justify-content-center">
-                <img class="admin-pic" src="/static/img/_admin/admin.png" alt="admin">
-                <h4>Hello, ## Admin Name ##</h4>
-                <div class="btn-group-vertical" role="group">
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" onclick="op1()" checked>
-                    <label class="btn btn-outline-primary" for="btnradio1">User Management</label>
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" onclick="op2()">
+                <label class="btn btn-outline-primary" for="btnradio2">Product Management</label>
 
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" onclick="op2()">
-                    <label class="btn btn-outline-primary" for="btnradio2">Product Management</label>
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio3" onclick="op3()">
+                <label class="btn btn-outline-primary" for="btnradio3">Reports</label>
 
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" onclick="op3()">
-                    <label class="btn btn-outline-primary" for="btnradio3">Reports</label>
-
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio4" onclick="op4()">
-                    <label class="btn btn-outline-primary" for="btnradio4">Statistics</label>
-                </div>
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio4" onclick="op4()">
+                <label class="btn btn-outline-primary" for="btnradio4">Statistics</label>
             </div>
-            <div class="col-10">
-                <div class="container" id="section1">
-                    <div class="btn-group" role="group" id="btn-bar-1">
-                        <input type="radio" class="btn-check" name="btnradio2" id="btnradio1-1" onclick="op1_1()" checked>
-                        <label class="btn btn-outline-primary" for="btnradio1-1">Registered Users</label>
+        </div>
+        <div class="col-10">
+            <div class="container" id="section1">
+                <div class="btn-group" role="group" id="btn-bar-1">
+                    <input type="radio" class="btn-check" name="btnradio2" id="btnradio1-1" onclick="op1_1()" checked>
+                    <label class="btn btn-outline-primary" for="btnradio1-1">Registered Users</label>
 
-                        <input type="radio" class="btn-check" name="btnradio2" id="btnradio1-2" onclick="op1_2()">
-                        <label class="btn btn-outline-primary" for="btnradio1-2">Pending Users</label>
+                    <input type="radio" class="btn-check" name="btnradio2" id="btnradio1-2" onclick="op1_2()">
+                    <label class="btn btn-outline-primary" for="btnradio1-2">Pending Users</label>
 
-                        <input type="radio" class="btn-check" name="btnradio2" id="btnradio1-3" onclick="op1_3()">
-                        <label class="btn btn-outline-primary" for="btnradio1-3">Denied Users</label>
+                    <input type="radio" class="btn-check" name="btnradio2" id="btnradio1-3" onclick="op1_3()">
+                    <label class="btn btn-outline-primary" for="btnradio1-3">Denied Users</label>
 
-                        <input type="radio" class="btn-check" name="btnradio2" id="btnradio1-4" onclick="op1_4()">
-                        <label class="btn btn-outline-primary" for="btnradio1-4">Banned Users</label>
-                    </div>
-                    <table class="table align-middle" id="table1-1">
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
-                            <th>Email</th>
-                            <th>Role</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td><button type="button" class="btn">Edit</button></td>
-                            <td><button type="button" class="btn">Remove</button></td>
-                            <td><button type="button" class="btn">Ban</button></td>
-                        </tr>
-                    </table>
-
-                    <table class="table align-middle" id="table1-2">
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
-                            <th>Email</th>
-                            <th>Role</th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td><button type="button" class="btn">Approve</button></td>
-                            <td><button type="button" class="btn">Deny</button></td>
-                        </tr>
-                    </table>
-
-                    <table class="table align-middle" id="table1-3">
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Email</th>
-                            <th>Reason</th>
-                        </tr>
-                        <tr>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                        </tr>
-                    </table>
-
-                    <table class="table align-middle" id="table1-4">
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Email</th>
-                            <th>Role</th>
-                            <th>Reason</th>
-                        </tr>
-                        <tr>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                        </tr>
-                    </table>
+                    <input type="radio" class="btn-check" name="btnradio2" id="btnradio1-4" onclick="op1_4()">
+                    <label class="btn btn-outline-primary" for="btnradio1-4">Banned Users</label>
                 </div>
-                <div class="container" id="section2">
-                    <div class="btn-group" role="group" id="btn-bar-2">
-                        <input type="radio" class="btn-check" name="btnradio3" id="btnradio2-1" onclick="op2_1()" checked>
-                        <label class="btn btn-outline-primary" for="btnradio2-1">Listed Products</label>
+                <table class="table align-middle" id="table1-1">
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                        <td><button type="button" class="btn">Edit</button></td>
+                        <td><button type="button" class="btn">Remove</button></td>
+                        <td><button type="button" class="btn">Ban</button></td>
+                    </tr>
+                </table>
 
-                        <input type="radio" class="btn-check" name="btnradio3" id="btnradio2-2" onclick="op2_2()">
-                        <label class="btn btn-outline-primary" for="btnradio2-2">Pending Products</label>
+                <table class="table align-middle" id="table1-2">
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                        <td><button type="button" class="btn">Approve</button></td>
+                        <td><button type="button" class="btn">Deny</button></td>
+                    </tr>
+                </table>
 
-                        <input type="radio" class="btn-check" name="btnradio3" id="btnradio2-3" onclick="op2_3()">
-                        <label class="btn btn-outline-primary" for="btnradio2-3">Denied Products</label>
+                <table class="table align-middle" id="table1-3">
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Reason</th>
+                    </tr>
+                    <tr>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                    </tr>
+                </table>
 
-                        <input type="radio" class="btn-check" name="btnradio3" id="btnradio2-4" onclick="op2_4()">
-                        <label class="btn btn-outline-primary" for="btnradio2-4">Banned Products</label>
-                    </div>
-                    <table class="table align-middle" id="table2-1">
-                        <tr>
-                            <th>Name</th>
-                            <th>Condition</th>
-                            <th>Price</th>
-                            <th>Description</th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td><button type="button" class="btn">Remove</button></td>
-                        </tr>
-                    </table>
+                <table class="table align-middle" id="table1-4">
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Reason</th>
+                    </tr>
+                    <tr>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="container" id="section2">
+                <div class="btn-group" role="group" id="btn-bar-2">
+                    <input type="radio" class="btn-check" name="btnradio3" id="btnradio2-1" onclick="op2_1()" checked>
+                    <label class="btn btn-outline-primary" for="btnradio2-1">Listed Products</label>
 
-                    <table class="table align-middle" id="table2-2">
-                        <tr>
-                            <th>Name</th>
-                            <th>Condition</th>
-                            <th>Price</th>
-                            <th>Description</th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td><button type="button" class="btn">Approve</button></td>
-                            <td><button type="button" class="btn">Deny</button></td>
-                        </tr>
-                    </table>
+                    <input type="radio" class="btn-check" name="btnradio3" id="btnradio2-2" onclick="op2_2()">
+                    <label class="btn btn-outline-primary" for="btnradio2-2">Pending Products</label>
 
-                    <table class="table align-middle" id="table2-3">
-                        <tr>
-                            <th>Name</th>
-                            <th>Condition</th>
-                            <th>Price</th>
-                            <th>Description</th>
-                            <th>Reason</th>
-                        </tr>
-                        <tr>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                        </tr>
-                    </table>
+                    <input type="radio" class="btn-check" name="btnradio3" id="btnradio2-3" onclick="op2_3()">
+                    <label class="btn btn-outline-primary" for="btnradio2-3">Denied Products</label>
 
-                    <table class="table align-middle" id="table2-4">
-                        <tr>
-                            <th>Name</th>
-                            <th>Condition</th>
-                            <th>Price</th>
-                            <th>Description</th>
-                            <th>Reason</th>
-                        </tr>
-                        <tr>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                        </tr>
-                    </table>
+                    <input type="radio" class="btn-check" name="btnradio3" id="btnradio2-4" onclick="op2_4()">
+                    <label class="btn btn-outline-primary" for="btnradio2-4">Banned Products</label>
                 </div>
-                <div class="container" id="section3">
-                    <div class="btn-group" role="group" id="btn-bar-3">
-                        <input type="radio" class="btn-check" name="btnradio4" id="btnradio3-1" onclick="op3_1()" checked>
-                        <label class="btn btn-outline-primary" for="btnradio3-1">All Reports</label>
+                <table class="table align-middle" id="table2-1">
+                    <tr>
+                        <th>Name</th>
+                        <th>Condition</th>
+                        <th>Price</th>
+                        <th>Description</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                        <td><button type="button" class="btn">Remove</button></td>
+                    </tr>
+                </table>
 
-                        <input type="radio" class="btn-check" name="btnradio4" id="btnradio3-2" onclick="op3_2()">
-                        <label class="btn btn-outline-primary" for="btnradio3-2">Reports to Process</label>
+                <table class="table align-middle" id="table2-2">
+                    <tr>
+                        <th>Name</th>
+                        <th>Condition</th>
+                        <th>Price</th>
+                        <th>Description</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                        <td><button type="button" class="btn">Approve</button></td>
+                        <td><button type="button" class="btn">Deny</button></td>
+                    </tr>
+                </table>
 
-                        <input type="radio" class="btn-check" name="btnradio4" id="btnradio3-3" onclick="op3_3()">
-                        <label class="btn btn-outline-primary" for="btnradio3-3">Approved Reports</label>
+                <table class="table align-middle" id="table2-3">
+                    <tr>
+                        <th>Name</th>
+                        <th>Condition</th>
+                        <th>Price</th>
+                        <th>Description</th>
+                        <th>Reason</th>
+                    </tr>
+                    <tr>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                    </tr>
+                </table>
 
-                        <input type="radio" class="btn-check" name="btnradio4" id="btnradio3-4" onclick="op3_4()">
-                        <label class="btn btn-outline-primary" for="btnradio3-4">Denied Reports</label>
-                    </div>
-                    <table class="table align-middle" id="table3-1">
-                        <tr>
-                            <th>Product ID</th>
-                            <th>Posting User</th>
-                            <th>Reporting User</th>
-                            <th>Reason</th>
-                        </tr>
-                        <tr>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                        </tr>
-                    </table>
+                <table class="table align-middle" id="table2-4">
+                    <tr>
+                        <th>Name</th>
+                        <th>Condition</th>
+                        <th>Price</th>
+                        <th>Description</th>
+                        <th>Reason</th>
+                    </tr>
+                    <tr>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="container" id="section3">
+                <div class="btn-group" role="group" id="btn-bar-3">
+                    <input type="radio" class="btn-check" name="btnradio4" id="btnradio3-1" onclick="op3_1()" checked>
+                    <label class="btn btn-outline-primary" for="btnradio3-1">All Reports</label>
 
-                    <table class="table align-middle" id="table3-2">
-                        <tr>
-                            <th>Product ID</th>
-                            <th>Posting User</th>
-                            <th>Reporting User</th>
-                            <th>Reason</th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td><button type="button" class="btn">Approve</button></td>
-                            <td><button type="button" class="btn">Deny</button></td>
-                        </tr>
-                    </table>
+                    <input type="radio" class="btn-check" name="btnradio4" id="btnradio3-2" onclick="op3_2()">
+                    <label class="btn btn-outline-primary" for="btnradio3-2">Reports to Process</label>
 
-                    <table class="table align-middle" id="table3-3">
-                        <tr>
-                            <th>Product ID</th>
-                            <th>Posting User</th>
-                            <th>Reporting User</th>
-                            <th>Reason</th>
-                        </tr>
-                        <tr>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                        </tr>
-                    </table>
+                    <input type="radio" class="btn-check" name="btnradio4" id="btnradio3-3" onclick="op3_3()">
+                    <label class="btn btn-outline-primary" for="btnradio3-3">Approved Reports</label>
 
-                    <table class="table align-middle" id="table3-4">
-                        <tr>
-                            <th>Product ID</th>
-                            <th>Posting User</th>
-                            <th>Reporting User</th>
-                            <th>Reason</th>
-                        </tr>
-                        <tr>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                            <td>dummy</td>
-                        </tr>
-                    </table>
+                    <input type="radio" class="btn-check" name="btnradio4" id="btnradio3-4" onclick="op3_4()">
+                    <label class="btn btn-outline-primary" for="btnradio3-4">Denied Reports</label>
                 </div>
-                <div class="container" id="section4">
-                    statistics
-                </div>
+                <table class="table align-middle" id="table3-1">
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Posting User</th>
+                        <th>Reporting User</th>
+                        <th>Reason</th>
+                    </tr>
+                    <tr>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                    </tr>
+                </table>
+
+                <table class="table align-middle" id="table3-2">
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Posting User</th>
+                        <th>Reporting User</th>
+                        <th>Reason</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                        <td><button type="button" class="btn">Approve</button></td>
+                        <td><button type="button" class="btn">Deny</button></td>
+                    </tr>
+                </table>
+
+                <table class="table align-middle" id="table3-3">
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Posting User</th>
+                        <th>Reporting User</th>
+                        <th>Reason</th>
+                    </tr>
+                    <tr>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                    </tr>
+                </table>
+
+                <table class="table align-middle" id="table3-4">
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Posting User</th>
+                        <th>Reporting User</th>
+                        <th>Reason</th>
+                    </tr>
+                    <tr>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                        <td>dummy</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="container" id="section4">
+                statistics
             </div>
         </div>
     </div>
+</div>
 
-    <script>
-        function op1() {
-            document.getElementById("section1").style.display = "block";
-            document.getElementById("section2").style.display = "none";
-            document.getElementById("section3").style.display = "none";
-            document.getElementById("section4").style.display = "none";
-        }
+<script>
+    function op1() {
+        document.getElementById("section1").style.display = "block";
+        document.getElementById("section2").style.display = "none";
+        document.getElementById("section3").style.display = "none";
+        document.getElementById("section4").style.display = "none";
+    }
 
-        function op1_1() {
-            document.getElementById("table1-1").style.display = "table";
-            document.getElementById("table1-2").style.display = "none";
-            document.getElementById("table1-3").style.display = "none";
-            document.getElementById("table1-4").style.display = "none";
-        }
+    function op1_1() {
+        document.getElementById("table1-1").style.display = "table";
+        document.getElementById("table1-2").style.display = "none";
+        document.getElementById("table1-3").style.display = "none";
+        document.getElementById("table1-4").style.display = "none";
+    }
 
-        function op1_2() {
-            document.getElementById("table1-1").style.display = "none";
-            document.getElementById("table1-2").style.display = "table";
-            document.getElementById("table1-3").style.display = "none";
-            document.getElementById("table1-4").style.display = "none";
-        }
+    function op1_2() {
+        document.getElementById("table1-1").style.display = "none";
+        document.getElementById("table1-2").style.display = "table";
+        document.getElementById("table1-3").style.display = "none";
+        document.getElementById("table1-4").style.display = "none";
+    }
 
-        function op1_3() {
-            document.getElementById("table1-1").style.display = "none";
-            document.getElementById("table1-2").style.display = "none";
-            document.getElementById("table1-3").style.display = "table";
-            document.getElementById("table1-4").style.display = "none";
-        }
+    function op1_3() {
+        document.getElementById("table1-1").style.display = "none";
+        document.getElementById("table1-2").style.display = "none";
+        document.getElementById("table1-3").style.display = "table";
+        document.getElementById("table1-4").style.display = "none";
+    }
 
-        function op1_4() {
-            document.getElementById("table1-1").style.display = "none";
-            document.getElementById("table1-2").style.display = "none";
-            document.getElementById("table1-3").style.display = "none";
-            document.getElementById("table1-4").style.display = "table";
-        }
+    function op1_4() {
+        document.getElementById("table1-1").style.display = "none";
+        document.getElementById("table1-2").style.display = "none";
+        document.getElementById("table1-3").style.display = "none";
+        document.getElementById("table1-4").style.display = "table";
+    }
 
-        function op2() {
-            document.getElementById("section1").style.display = "none";
-            document.getElementById("section2").style.display = "block";
-            document.getElementById("section3").style.display = "none";
-            document.getElementById("section4").style.display = "none";
-        }
+    function op2() {
+        document.getElementById("section1").style.display = "none";
+        document.getElementById("section2").style.display = "block";
+        document.getElementById("section3").style.display = "none";
+        document.getElementById("section4").style.display = "none";
+    }
 
-        function op2_1() {
-            document.getElementById("table2-1").style.display = "table";
-            document.getElementById("table2-2").style.display = "none";
-            document.getElementById("table2-3").style.display = "none";
-            document.getElementById("table2-4").style.display = "none";
-        }
+    function op2_1() {
+        document.getElementById("table2-1").style.display = "table";
+        document.getElementById("table2-2").style.display = "none";
+        document.getElementById("table2-3").style.display = "none";
+        document.getElementById("table2-4").style.display = "none";
+    }
 
-        function op2_2() {
-            document.getElementById("table2-1").style.display = "none";
-            document.getElementById("table2-2").style.display = "table";
-            document.getElementById("table2-3").style.display = "none";
-            document.getElementById("table2-4").style.display = "none";
-        }
+    function op2_2() {
+        document.getElementById("table2-1").style.display = "none";
+        document.getElementById("table2-2").style.display = "table";
+        document.getElementById("table2-3").style.display = "none";
+        document.getElementById("table2-4").style.display = "none";
+    }
 
-        function op2_3() {
-            document.getElementById("table2-1").style.display = "none";
-            document.getElementById("table2-2").style.display = "none";
-            document.getElementById("table2-3").style.display = "table";
-            document.getElementById("table2-4").style.display = "none";
-        }
+    function op2_3() {
+        document.getElementById("table2-1").style.display = "none";
+        document.getElementById("table2-2").style.display = "none";
+        document.getElementById("table2-3").style.display = "table";
+        document.getElementById("table2-4").style.display = "none";
+    }
 
-        function op2_4() {
-            document.getElementById("table2-1").style.display = "none";
-            document.getElementById("table2-2").style.display = "none";
-            document.getElementById("table2-3").style.display = "none";
-            document.getElementById("table2-4").style.display = "table";
-        }
+    function op2_4() {
+        document.getElementById("table2-1").style.display = "none";
+        document.getElementById("table2-2").style.display = "none";
+        document.getElementById("table2-3").style.display = "none";
+        document.getElementById("table2-4").style.display = "table";
+    }
 
-        function op3() {
-            document.getElementById("section1").style.display = "none";
-            document.getElementById("section2").style.display = "none";
-            document.getElementById("section3").style.display = "block";
-            document.getElementById("section4").style.display = "none";
-        }
+    function op3() {
+        document.getElementById("section1").style.display = "none";
+        document.getElementById("section2").style.display = "none";
+        document.getElementById("section3").style.display = "block";
+        document.getElementById("section4").style.display = "none";
+    }
 
-        function op3_1() {
-            document.getElementById("table3-1").style.display = "table";
-            document.getElementById("table3-2").style.display = "none";
-            document.getElementById("table3-3").style.display = "none";
-            document.getElementById("table3-4").style.display = "none";
-        }
+    function op3_1() {
+        document.getElementById("table3-1").style.display = "table";
+        document.getElementById("table3-2").style.display = "none";
+        document.getElementById("table3-3").style.display = "none";
+        document.getElementById("table3-4").style.display = "none";
+    }
 
-        function op3_2() {
-            document.getElementById("table3-1").style.display = "none";
-            document.getElementById("table3-2").style.display = "table";
-            document.getElementById("table3-3").style.display = "none";
-            document.getElementById("table3-4").style.display = "none";
-        }
+    function op3_2() {
+        document.getElementById("table3-1").style.display = "none";
+        document.getElementById("table3-2").style.display = "table";
+        document.getElementById("table3-3").style.display = "none";
+        document.getElementById("table3-4").style.display = "none";
+    }
 
-        function op3_3() {
-            document.getElementById("table3-1").style.display = "none";
-            document.getElementById("table3-2").style.display = "none";
-            document.getElementById("table3-3").style.display = "table";
-            document.getElementById("table3-4").style.display = "none";
-        }
+    function op3_3() {
+        document.getElementById("table3-1").style.display = "none";
+        document.getElementById("table3-2").style.display = "none";
+        document.getElementById("table3-3").style.display = "table";
+        document.getElementById("table3-4").style.display = "none";
+    }
 
-        function op3_4() {
-            document.getElementById("table3-1").style.display = "none";
-            document.getElementById("table3-2").style.display = "none";
-            document.getElementById("table3-3").style.display = "none";
-            document.getElementById("table3-4").style.display = "table";
-        }
+    function op3_4() {
+        document.getElementById("table3-1").style.display = "none";
+        document.getElementById("table3-2").style.display = "none";
+        document.getElementById("table3-3").style.display = "none";
+        document.getElementById("table3-4").style.display = "table";
+    }
 
-        function op4() {
-            document.getElementById("section1").style.display = "none";
-            document.getElementById("section2").style.display = "none";
-            document.getElementById("section3").style.display = "none";
-            document.getElementById("section4").style.display = "block";
-        }
-    </script>
-</body>
+    function op4() {
+        document.getElementById("section1").style.display = "none";
+        document.getElementById("section2").style.display = "none";
+        document.getElementById("section3").style.display = "none";
+        document.getElementById("section4").style.display = "block";
+    }
+</script>
 {% endblock %}

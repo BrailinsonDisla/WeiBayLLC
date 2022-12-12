@@ -21,7 +21,7 @@ def profile():
 
 @_registered.route('/profile/<username>', methods=['GET', 'POST'])
 def load_profile(username : str): # Page for loading user profile.
-    return 'Welcome ' + username;
+    return render_template('success.html', username=username)
 
 @_registered.route('/logout')
 @login_required

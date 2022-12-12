@@ -2,23 +2,6 @@ body {
     background-color: white;
 }
 
-/* NAV BAR */
-.navbar {
-    background-color: #C2F9FE;
-    box-shadow: 0 2px 4px 0 black;
-    padding: 10px;
-}
-
-#logo {
-    border-radius: 50%;
-    max-width: 50px;
-}
-
-img {
-    max-width: 75%;
-}
-/***********/
-
 .container {
     margin-top: 50px;
 }
@@ -31,6 +14,7 @@ img {
 
 .carousel img {
     margin: auto;
+    max-width: 75%;
 }
 
 /* TODO: Find a way to change the color of the carousel prev/next buttons. */

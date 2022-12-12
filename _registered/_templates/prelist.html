@@ -1,132 +1,105 @@
-{% extends 'base.html' %}
+{% extends 'navbar.html' %}
 
-{% block head %}
+{% block head2 %}
 <link rel="stylesheet" href="/static/styles/_registered/prelist.css">
 {% endblock %}
 
-{% block body %}
+{% block content %}
+<div class="container">
+    <h1>Start your listing</h1>
 
-<body>
-    <!-- Nav bar -->
-    <nav class="navbar sticky-top justify-content-center">
-        <div class="container-fluid">
-            <a href="/home">
-                <img src="/static/img/logos/logo.png" alt="weibay_logo" id="logo">
-            </a>
-            <form role="search">
-                <input type="search" placeholder="Search" name="search">
-                <button class="btn" type="submit">Search</button>
-            </form>
-            <ul class="nav">
-                <li class="nav-item">
-                    <a id="login-link" class="nav-link" href="/login">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a id="sign-up-link" class="nav-link" href="/apply">Sign Up</a>
-                </li>
-                <li class="nav-item">
-                    <a id="sign-up-link" class="nav-link" href="/logout">Sign Out</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <div class="container">
-        <h1>Start your listing</h1>
-
-        <form action="" id="new-item-data">
-            <div class="container">
-                <div class="row">
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label for="item-name" class="form-label">Item Title</label><br>
-                            <input type="text" class="form-control" name="item-name" id="item-name" placeholder="Tell us what you're selling">
-                        </div>
-                        <div>
-                            <label for="item-condition" class="form-label">Item Condition</label><br>
-                            <select class="form-control" name="item-condition" id="item-condition">
-                                <option>New</option>
-                                <option>Open Box</option>
-                                <option>Used</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="item-price" class="form-label">Price</label>
-                            <input type="number" class="form-control" name="item-price" id="item-price">
-                        </div>
+    <form action="" id="new-item-data">
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="item-name" class="form-label">Item Title</label><br>
+                        <input type="text" class="form-control" name="item-name" id="item-name" placeholder="Tell us what you're selling">
                     </div>
-                    <div class="col-6">
-                        <div>
-                            <label for="item-description" class="form-label">Item Description</label>
-                            <textarea class="form-control" name="item-description" id="item-description" rows="3" placeholder="Tell us about what you're selling"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="image-upload">Upload Images</label>
-                            <input type="file" class="form-control-file" id="drop-area" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)"
-                            ondragleave="dragLeaveHandler(event)" multiple>
-                                <p>Drop files here to upload</p>
-                            </div>
-                        </div>
-                        <div id="image-preview"></div>
+                    <div>
+                        <label for="item-condition" class="form-label">Item Condition</label><br>
+                        <select class="form-control" name="item-condition" id="item-condition">
+                            <option>New</option>
+                            <option>Open Box</option>
+                            <option>Used</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="item-price" class="form-label">Price</label>
+                        <input type="number" class="form-control" name="item-price" id="item-price">
                     </div>
                 </div>
-                <div class="row">
-                    <button type="submit" id="submit" class="btn btn-primary">submit</button>
+                <div class="col-6">
+                    <div>
+                        <label for="item-description" class="form-label">Item Description</label>
+                        <textarea class="form-control" name="item-description" id="item-description" rows="3" placeholder="Tell us about what you're selling"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="image-upload">Upload Images</label>
+                        <input type="file" class="form-control-file" id="drop-area" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)"
+                        ondragleave="dragLeaveHandler(event)" multiple>
+                            <p>Drop files here to upload</p>
+                        </div>
+                    </div>
+                    <div id="image-preview"></div>
                 </div>
             </div>
-        </form>
-    </div>
+            <div class="row">
+                <button type="submit" id="submit" class="btn btn-primary">submit</button>
+            </div>
+        </div>
+    </form>
+</div>
 
-    <script>
-        function dragOverHandler(event) {
-            // Prevent the default behavior (previewing the file in the browser)
-            event.preventDefault();
+<script>
+    function dragOverHandler(event) {
+        // Prevent the default behavior (previewing the file in the browser)
+        event.preventDefault();
 
-            // Add the highlight class to the drop area
-            const dropArea = document.getElementById('drop-area');
-            dropArea.classList.add('highlight');
+        // Add the highlight class to the drop area
+        const dropArea = document.getElementById('drop-area');
+        dropArea.classList.add('highlight');
+    }
+
+    function dragLeaveHandler(event) {
+        // Remove the highlight class from the drop area
+        const dropArea = document.getElementById('drop-area');
+        dropArea.classList.remove('highlight');
+    }
+
+    function dropHandler(event) {
+        // Prevent the default behavior (opening the file in the browser)
+        event.preventDefault();
+
+        // Get the files that were dropped
+        const files = event.dataTransfer.files;
+
+        // Create an HTML fragment to hold the previews
+        const fragment = document.createDocumentFragment();
+
+        // Loop through the files and create a preview for each
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+
+            // Create an image element to preview the file
+            const img = document.createElement('img');
+            img.classList.add('img-thumbnail');
+
+            // Use the FileReader API to read the file and set the src of the image
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                img.src = event.target.result;
+            };
+            reader.readAsDataURL(file);
+
+            // Add the image to the HTML fragment
+            fragment.appendChild(img);
         }
 
-        function dragLeaveHandler(event) {
-            // Remove the highlight class from the drop area
-            const dropArea = document.getElementById('drop-area');
-            dropArea.classList.remove('highlight');
-        }
-
-        function dropHandler(event) {
-            // Prevent the default behavior (opening the file in the browser)
-            event.preventDefault();
-
-            // Get the files that were dropped
-            const files = event.dataTransfer.files;
-
-            // Create an HTML fragment to hold the previews
-            const fragment = document.createDocumentFragment();
-
-            // Loop through the files and create a preview for each
-            for (let i = 0; i < files.length; i++) {
-                const file = files[i];
-
-                // Create an image element to preview the file
-                const img = document.createElement('img');
-                img.classList.add('img-thumbnail');
-
-                // Use the FileReader API to read the file and set the src of the image
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    img.src = event.target.result;
-                };
-                reader.readAsDataURL(file);
-
-                // Add the image to the HTML fragment
-                fragment.appendChild(img);
-            }
-
-            // Add the fragment to the page
-            const preview = document.getElementById('image-preview');
-            preview.innerHTML = '';
-            preview.appendChild(fragment);
-        }
-    </script>
-</body>
+        // Add the fragment to the page
+        const preview = document.getElementById('image-preview');
+        preview.innerHTML = '';
+        preview.appendChild(fragment);
+    }
+</script>
 {% endblock %}
