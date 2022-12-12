@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/styles/_default/home.css">
+{% endblock %}
+
+{% block body %}
+<body>
+    <!-- Nav bar -->
+    <nav class="navbar sticky-top justify-content-center">
+        <div class="container-fluid">
+            <a href="/home">
+                <img src="/static/img/logos/logo.png" alt="weibay_logo" id="logo">
+            </a>
+            <form role="search">
+                <input type="search" placeholder="Search" name="search">
+                <button class="btn" type="submit">Search</button>
+            </form>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a id="login-link" class="nav-link" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a id="sign-up-link" class="nav-link" href="/apply">Sign Up</a>
+                </li>
+                <li class="nav-item">
+                    <a id="sign-up-link" class="nav-link" href="/logout">Sign Out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+{#    <!-- search bar and enter button -->#}
+{#    <div style="position:absolute; top:0; left:0;">#}
+{#      <div style="border:1px solid black; padding:10px;">#}
+{#        <form>#}
+{#          <input type="text" placeholder="Search">#}
+{#          <input type="submit" value="Enter">#}
+{#        </form>#}
+{#      </div>#}
+{#    </div>#}
+
+
+{#    <!-- login and apply -->#}
+{#    <div style="position:absolute; top:0; right:0;">#}
+{#      <a href="#">Login</a>#}
+{#      <a href="#">Apply</a>#}
+{#    </div>#}
+
+    <!-- box below the top left box with a list and select boxes -->
+    <div class="container">
+     <div class="row">
+         <div class="col-3">
+             <h1>Category</h1>
+                <ul>
+                    <li>Category 1</li>
+                    <li>Category 2</li>
+                    <li>Category 3</li>
+                </ul>
+
+              <h1>Condition</h1>
+              <select>
+                <option>New</option>
+                <option>Open Box</option>
+                <option>Used</option>
+              </select>
+
+              <h1>Rating</h1>
+              <select>
+                <option>5</option>
+                <option>4</option>
+                <option>3</option>
+                <option>2</option>
+                <option>1</option>
+              </select>
+              <!-- insert star system here implementing css -->
+              <h1>Price Range</h1>
+              <form>
+                Min: <input type="text">
+              </form>
+              <form>
+                Max:<input type="text">
+              </form>
+         </div>
+    </div>
+   </div>
+  </body>
+{% endblock %}

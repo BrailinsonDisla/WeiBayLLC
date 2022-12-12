@@ -1,11 +1,35 @@
 {% extends 'base.html' %}
 
 {% block head %}
-    <link rel="stylesheet" href="/styles/_admin/dashboard.css">
+<link rel="stylesheet" href="/static/styles/_admin/dashboard.css">
 {% endblock %}
 
 {% block body %}
 <body>
+    <!-- Nav bar -->
+    <nav class="navbar sticky-top justify-content-center">
+        <div class="container-fluid">
+            <a href="/home">
+                <img src="/static/img/logos/logo.png" alt="weibay_logo" id="logo">
+            </a>
+            <form role="search">
+                <input type="search" placeholder="Search" name="search">
+                <button class="btn" type="submit">Search</button>
+            </form>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a id="login-link" class="nav-link" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a id="sign-up-link" class="nav-link" href="/apply">Sign Up</a>
+                </li>
+                <li class="nav-item">
+                    <a id="sign-up-link" class="nav-link" href="/logout">Sign Out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="container">
         <div class="row">
             <div class="col-2 justify-content-center">

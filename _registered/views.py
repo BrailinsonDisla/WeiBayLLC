@@ -40,4 +40,6 @@ def logout(): # Page to process logging out.
     return redirect(url_for('_default.homepage'))
 ## DEFINE OTHER ROUTES
 
-9736873064
+@_registered.route('/profile/new-product')
+def new_product():
+    return render_template('prelist.html')

@@ -1,3 +1,41 @@
+/* NAV BAR */
+.navbar {
+    background-color: #C2F9FE;
+    box-shadow: 0 2px 4px 0 black;
+    padding: 10px;
+}
+
+#logo {
+    border-radius: 50%;
+    max-width: 50px;
+}
+
+.navbar img {
+    max-width: 75%;
+}
+
+.navbar .btn,
+.navbar .btn:hover,
+.navbar .btn:active,
+.navbar .btn:visited,
+.navbar .btn:focus {
+    background-color: #fff8ad !important;
+    border-color: #fff8ad !important;
+}
+
+.navbar .btn {
+    color: black !important;
+}
+
+.navbar .btn-check:checked + .btn {
+    color: #a30000 !important;
+}
+
+.navbar .btn:hover {
+    color: #898989 !important;
+}
+/***********/
+
 body {
     background-color: white;
 }
@@ -88,15 +126,7 @@ th, td {
     text-align: center;
     background-color: #d2d2d2;
     /*margin: 10px;*/
-}
-
-#section4 .data {
-    padding: 5px;
-    width: 150px;
-}
-
-#section4 .group, #section4 .btn {
-    margin: 15px;
+    padding: 10px;
 }
 
 #section4 label {
@@ -104,10 +134,26 @@ th, td {
 }
 /*************/
 
+#section4 .data, #section6 .data {
+    padding: 5px;
+    width: 150px;
+}
+
+#section4 .group, #section6 .group {
+    margin: 15px;
+}
+
 /* SECTION 5 */
 /*************/
 
 /* SECTION 6 */
+#section6 form {
+    margin-bottom: 30px;
+}
+
+#section6 .group2 {
+    display: inline;
+}
 /*************/
 
 /* SECTION 7 */
