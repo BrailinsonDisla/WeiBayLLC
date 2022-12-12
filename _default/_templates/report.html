@@ -28,5 +28,14 @@
         <textarea id="details" name="details" placeholder="Provide more information about your complaint here."></textarea><br>
         <input type="submit" name = "submit_button" value="Submit">
     </form> 
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% if messages[0] == 'InvalidReason' %}
+                <div class="alert alert-danger" role="alert">
+                    <div class="flash-message">{{ messages[0]}}<br>Missing Details, try again.</div>
+                </div>
+            {% endif %}
+        {% endif %}
+    {% endwith %}
 </body>
 {% endblock %}

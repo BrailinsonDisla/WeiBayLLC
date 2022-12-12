@@ -9,21 +9,22 @@ from generic import paragraphCase
 
 # Submits a report for approval.
 def submitReport(prod_id: int, seller_id: int, reporter_id: int, subject: str, reason: str):
-    # Checks if the product id is invalid.
-    if prod_id <= 0:
-        # Raise an InvalidProductID exception.
-        raise InvalidProductID
+    #! Checks if the product id is invalid.
+    #// if prod_id <= 0:
+    #//     # Raise an InvalidProductID exception.
+    #//     raise InvalidProductID
 
-    # Checks if the seller id is invalid.
-    if seller_id <= 0:
-        # Raise an InvalidSellerID exception.
-        raise InvalidSellerID
+    #// # Checks if the seller id is invalid.
+    #// if seller_id <= 0:
+    #//     # Raise an InvalidSellerID exception.
+    #//     raise InvalidSellerID
 
-    # Checks if the reporter id is invalid.
-    if reporter_id <= 0:
-        # Raise an InvalidReporterID exception.
-        raise InvalidReporterID
-
+    #// # Checks if the reporter id is invalid.
+    #// if reporter_id <= 0:
+    #//     # Raise an InvalidReporterID exception.
+    #//     raise InvalidReporterID
+    #!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  
     # Cleans up the reason.
     reason = paragraphCase(reason)
 

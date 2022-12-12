@@ -7,7 +7,8 @@ from accountManagement import submitRUApplication, authenticate, anonymous
 # Imports user-defined exceptions.
 from UD_Exceptions import *
 
-#import 
+# Import ReportsManagement.
+from reportsManagement import submitReport
 
 # Initializes the blueprint for _default.
 _default = Blueprint('_default', __name__, template_folder='_templates', static_folder='_static')
@@ -156,13 +157,39 @@ def application_submitted(): # Page for submitted application.
 def report_form():
     return render_template('report.html')
 
+#! Check the submitReports to make sure it inclued prod_id, seller_id, and/or reporter_id
+#! reportsManagement.py Commented out things in submitReport
 @_default.route('/process_report', methods=['POST'])
 def process_report():
     if request.method == 'POST':
         subject = request.form.get('ireport-reason')
         details = request.form.get('details')
         
-        # dbcursor.execute(("INSERT INTO PendingApprovalReports (ProductID, Subject, Details VALUES (%s, %s, %s)",(1,subject,details)))
+        try:
+            invalid_values = [None, '']
+
+            # Checks if the reason field is invalid.
+            if details in invalid_values:
+                # Raise an InvalidReason exception.
+                raise InvalidReason
             
-        # TODO Pass Report to the Database
-        return redirect(url_for('_default.homepage'))
+            # TODO Make sure to include prod_id, seller_id, 
+            #If the current user is anonymous then the reporter_id is None.
+            if anonymous():
+                submitReport(prod_id=None, seller_id=None, reporter_id=None, subject= subject, reason=details)
+            else: 
+                # TODO Make sure to include prod_id, seller_id, and reporter_id
+                submitReport(prod_id=1, seller_id=None, reporter_id=None, subject= subject, reason=details)
+
+            # TODO Pass Report to the Database
+            return redirect(url_for('_default.homepage'))
+
+        except InvalidReason:
+            flash('InvalidReason')
+        return redirect(url_for('_default.report_form'))
+    else:
+        if anonymous():
+            return redirect(url_for('_default.homepage'))
+        else:
+            return redirect(url_for('_default.homepage'))
+            
