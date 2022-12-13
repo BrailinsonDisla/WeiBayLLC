@@ -59,3 +59,22 @@ class User(UserMixin):
 class Anonymous(AnonymousUserMixin):
     def __init__(self):
         pass
+
+class Address():
+    # Defines the address ID.
+    addressID = database.Column(database.Integer, primary_key=True)
+
+    # Defines the address.
+    address = database.Column(database.String(45))
+
+    # Defines the city.
+    city = database.Column(database.String(45))
+
+    # Defines the state.
+    state = database.Column(database.String(45))
+
+    # Defines the zip code.
+    zip_code = database.Column(database.Integer)
+
+    # Defines the country.
+    country = database.Column(database.String(45))

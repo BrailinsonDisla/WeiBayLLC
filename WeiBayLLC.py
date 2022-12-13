@@ -31,13 +31,17 @@ from _registered.views import _registered
 # Registers the _registered blueprint.
 WeiBayLLC_App.register_blueprint(_registered)
 
-from setup_admins import setup_accounts, setup_products, setup_reports, test_admin_dashboard
+# Imports the fuctions that setup the initial state of the application.
+from setup_admins import setup_accounts, setup_products, setup_bids, setup_reports
 
+# Sets up the application's initial state.
 # setup_accounts()
 # setup_products()
 # setup_reports()
-
+setup_bids()
 # test_admin_dashboard()
+
+
 
 # Starts the WeiBayLLC website application.
 if __name__ == '__main__':

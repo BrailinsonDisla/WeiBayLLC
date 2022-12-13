@@ -1,74 +1,65 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% block head %}
-<style>
-.navbar {
-    background-color: #C2F9FE;
-    box-shadow: 0 2px 4px 0 black;
-    padding: 10px;
-}
+        <!-- Provides access to user-defined navbar's CSS styling -->
+        <link rel="stylesheet" href="/static/styles/navbar.css">
 
-#logo {
-    border-radius: 50%;
-    max-width: 50px;
-}
+        <!-- Provides access to user-defined CSS styling -->
+        <link rel="stylesheet" href="/static/styles/navbar.css">
 
-.navbar img {
-    max-width: 75%;
-}
-
-.navbar .btn,
-.navbar .btn:hover,
-.navbar .btn:active,
-.navbar .btn:visited,
-.navbar .btn:focus {
-    background-color: #fff8ad !important;
-    border-color: #fff8ad !important;
-}
-
-.navbar .btn {
-    color: black !important;
-}
-
-.navbar .btn-check:checked + .btn {
-    color: #a30000 !important;
-}
-
-.navbar .btn:hover {
-    color: #898989 !important;
-}
-</style>
-
-    {% block head2 %}{% endblock %}
-
-{% endblock %}
+    {% block navbar_head %} {% endblock %}
+{%  endblock %}
 
 {% block body %}
-<body>
-    <nav class="navbar sticky-top justify-content-center">
-        <div class="container-fluid">
-            <a href="/home">
-                <img src="/static/img/logos/logo.png" alt="weibay_logo" id="logo">
-            </a>
-            <form role="search">
-                <input type="search" placeholder="Search" name="search">
-                <button class="btn" type="submit">Search</button>
-            </form>
-            <ul class="nav">
-                <li class="nav-item">
-                    <a id="login-link" class="nav-link" href="/login">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a id="sign-up-link" class="nav-link" href="/apply">Sign Up</a>
-                </li>
-                <li class="nav-item">
-                    <a id="sign-up-link" class="nav-link" href="/logout">Sign Out</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <body>
+        <!-- Creates the site-wide navbar -->
+        <nav class="navbar sticky-top justify-content-center">
+            <div class="container-fluid">
+                <a href="{{ url_for("_default.homepage")  }}">
+                    <img src="/static/img/logos/WeiBayLLC_Logo.png" alt="WeiBayLLC Logo" id="WeiBayLLC_Logo">
+                </a>
 
-    {% block content %}{% endblock %}
+                <!-- Creates the search form -->
+                <form role="search">
+                    <input type="search" placeholder="Search Products" name="search">
+                    <button class="btn" type="submit">Search</button>
+                </form>
 
-</body>
+                <!-- Creates the navbar for Login and Signup -->
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a id="profile" class="nav-link" href="{{ url_for("_registered.profile") }}">Profile</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a id="login" class="nav-link" href="{{ url_for("_default.login") }}">Login</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a id="sign-up" class="nav-link" href="{{  url_for("_default.apply") }}">Sign Up</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a id="sign-out" class="nav-link" href="{{ url_for("_registered.logout") }}">Sign Out</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        {% if anonymous() %}
+             <script>
+                document.getElementById("profile").remove();
+                document.getElementById("sign-out").remove();
+            </script>
+        {% else %}
+            <script>
+                document.getElementById("login").remove();
+                document.getElementById("sign-up").remove();
+            </script>
+        {% endif %}
+
+        <!-- Defines the block for the content -->
+        {% block content %} {% endblock %}
+    </body>
 {% endblock %}
+

@@ -3,8 +3,6 @@
 {% block head %}
     <title> Login </title>
     <link href="/static/styles/_default/login.css" rel="stylesheet">
-
-
 {% endblock %}
 
 {% block body %}
@@ -13,7 +11,7 @@
             <div class="row">
                 <div class="col-6">
                     <div>
-                        <img src="/static/img/logos/logo.png" alt="WeiBayLLC Logo">
+                        <img src="/static/img/logos/WeiBayLLC_Logo.png" alt="WeiBayLLC Logo">
                         <h1>WeiBay Login</h1>
                     </div>
                 </div>
@@ -44,6 +42,10 @@
                                 <div class="alert alert-danger" role="alert">
                                     <p>Pending approval, must wait.</p>
                                 </div>
+                            {% elif messages[0] == 'DeniedUser' %}
+                                <div class="alert alert-danger" role="alert">
+                                    <p>You are denied from the system.</p>
+                                </div>
                             {% elif messages[0] == 'BannedUser' %}
                                 <div class="alert alert-danger" role="alert">
                                     <p>You are banned from the system.</p>
@@ -55,7 +57,7 @@
                             {% endif %}
                         {% endif %}
 
-                        {% if not messages or messages[0] not in ['UserDNE', 'BannedUser'] %}
+                        {% if not messages or messages[0] not in ['UserDNE', 'DeniedUser', 'BannedUser'] %}
                             <p>Don't have an account?<a href="{{ url_for('_default.apply') }}">Apply</a></p>
                         {% endif %}
                     {% endwith %}

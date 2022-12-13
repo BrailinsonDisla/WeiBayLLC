@@ -6,6 +6,9 @@ from accountManagement import submitRUApplication, approveRUApplication, \
 from productManagement import submitProduct, approveProductListing, \
                                 denyProductListing, banProductListing
 
+# Imports the order management functionalities for initial orders and bids.
+from orderManagement import submitBid, approveBid, submitOrder
+
 # Imports the report management functionalities for initial reports setup.
 from reportsManagement import submitReport, approveReport, denyReport
 
@@ -47,6 +50,12 @@ def setup_products():
     approveProductListing(1, 'Water Boat')
     approveProductListing(2, 'Burger Pack')
     banProductListing(1, 'Water Boat')
+
+# Manually setups initial bids.
+def setup_bids():
+    # Manually submits bids for a few orders.
+    submitBid(1, 20)
+    submitBid(1)
 
 # Manually setups initial reports for WeiBayLLC.
 def setup_reports():
