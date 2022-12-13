@@ -12,7 +12,7 @@ _default = Blueprint('_default', __name__, template_folder='_templates', static_
 
 @_default.route('/')
 def homepage(): # Homepage for the website application.
-    return render_template('homepage.html')
+    return render_template('home.html', anonymous=anonymous)
 
 @_default.route('/login')
 def login(): # Page for login.

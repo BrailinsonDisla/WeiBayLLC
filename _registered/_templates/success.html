@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<style>
+body {
+    height: 100%;
+    justify-items: center;
+    align-items: center;
+    display: grid;
+}
+
+.container {
+    width: 50%;
+    height: 50%;
+    background-color: #a6a6a6;
+    display: grid;
+}
+
+h1 {
+    margin: auto;
+}
+
+img {
+    margin: auto;
+    max-width: 150px;
+    animation: rotation 1.5s infinite linear; /* name duration count direction */
+    border-radius: 50%;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(345deg);
+    }
+    50% {
+        transform: rotate(350deg);
+    }
+    75% {
+        transform: rotate(355deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+</style>
+{% endblock %}
+
+{% block body %}
+<body>
+    <div class="container">
+        <h1>Welcome, {{ username.split(".")[0].capitalize() }}!</h1>
+        <img src="/img/logos/WeiBayLLC_Logo.png" alt="logo">
+    </div>
+
+    <script>
+        const tID = setTimeout(function () {
+            window.location.href = "/profile";
+            window.clearTimeout(tID);		// clear time out.
+        }, 3000);
+    </script>
+</body>
+{% endblock %}

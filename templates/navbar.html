@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block head %}
+        <!-- Provides access to user-defined navbar's CSS styling -->
+        <link rel="stylesheet" href="/static/styles/navbar.css">
+
+        <!-- Provides access to user-defined CSS styling -->
+        <link rel="stylesheet" href="/static/styles/navbar.css">
+
+    {% block navbar_head %} {% endblock %}
+{%  endblock %}
+
+{% block body %}
+    <body>
+        <!-- Creates the site-wide navbar -->
+        <nav class="navbar sticky-top justify-content-center">
+            <div class="container-fluid">
+                <a href="{{ url_for("_default.homepage")  }}">
+                    <img src="/static/img/logos/WeiBayLLC_Logo.png" alt="WeiBayLLC Logo" id="WeiBayLLC_Logo">
+                </a>
+
+                <!-- Creates the search form -->
+                <form role="search">
+                    <input type="search" placeholder="Search Products" name="search">
+                    <button class="btn" type="submit">Search</button>
+                </form>
+
+                <!-- Creates the navbar for Login and Signup -->
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a id="login-link" class="nav-link" href="{{ url_for("_default.login") }}">Login</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a id="sign-up-link" class="nav-link" href="{{  url_for("_default.apply") }}">Sign Up</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a id="logout-link" class="nav-link" href="{{ url_for("_registered.logout") }}">Sign Out</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Defines the block for the content -->
+        {% block content %} {% endblock %}
+    </body>
+{% endblock %}
