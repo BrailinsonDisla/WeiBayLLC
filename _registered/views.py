@@ -18,6 +18,9 @@ from werkzeug.utils import secure_filename
 
 from DBConnection import * 
 
+from Systems.productManagement import submit_listing
+
+
 # Defines the _registered blueprint's root.
 @_registered.route('/profile')
 @login_required
@@ -42,45 +45,45 @@ def logout(): # Page to process logging out.
     identity_changed.send(WeiBayLLC_App, identity=AnonymousIdentity())
 
     # Redirect to the login page.
-    return redirect(url_for('_default.homepage'))
+    return redirect(url_for('_default.home'))
 
 ## DEFINE OTHER ROUTES
 
-## <<<<<<< talike3
-## @_registered.route('/profile/new-product')
-## def new_product():
-##   return render_template('prelist.html')
-
+# @_registered.route('/profile/new-product')
 @_registered.route('/profile/listing_form')
 @login_required
 def user_listing():
     return render_template('prelist.html')  # fix
 
-@_registered.route('/listing_form', methods=['GET', 'POST'])
+@_registered.route('/profile/process_listing', methods=['POST'])
+@login_required
 def listing_form(): #  Page for Listing Items as a Registered User.
     if request.method == 'POST':
+        seller = current_user.user_id
         product_name = request.form.get('item-name')
         product_condition = request.form.get('item-condition')
         product_price = request.form.get('item-price')
         product_desc = request.form.get('item-description')
-        product_images = request.files['item-image']
+        # product_images = request.files['item-image']
+        product_qty = request.form.get('item-qty')
         
-        if not product_images:
-            return 'No pic uploaded', 400
+        # if not product_images:
+        #     return 'No pic uploaded', 400
         
-        filename = secure_filename(product_images.filename)
-        mimetype = product_images.mimetype
+        # filename = secure_filename(product_images.filename)
+        # mimetype = product_images.mimetype
+        submit_listing(seller,product_name,product_desc,product_condition, product_qty,product_price,None)
         
-        dbCursor.execute("INSERT INTO PendingApprovalProducts VALUES()"(product_images.read(),filename, mimetype))
-        
-            
         # for product_images_data in product_images:
         #     product_images_data = product_images.read()
         #     binary_data = 
-        print("item-name: %s\n"
-            "item-condition %s\n"
-            "item-price %s\n"
-            "item-description: %s\n"
-            "item-image: %s\n" % (product_name,product_condition,product_price, product_desc,product_images))
+        
+        # print("item-name: %s\n"
+        #     "item-condition %s\n"
+        #     "item-price %s\n"
+        #     "item-description: %s\n"
+        #     "item-image: %s\n" % (product_name,product_condition,product_price, product_desc,product_images))
         return redirect(url_for('_registered.profile'))
- 
+    else:
+        
+        return redirect(url_for('_registered.profile'))

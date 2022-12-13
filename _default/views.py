@@ -13,11 +13,9 @@ from reportsManagement import submitReport
 # Initializes the blueprint for _default.
 _default = Blueprint('_default', __name__, template_folder='_templates', static_folder='_static')
 
-
-
 @_default.route('/')
 def homepage(): # Homepage for the website application.
-    return render_template('homepage.html')
+    return render_template('home.html')
 
 @_default.route('/login')
 def login(): # Page for login.
@@ -26,7 +24,7 @@ def login(): # Page for login.
         return render_template('login.html')
     else:
         flash('LoggedIn')
-        return redirect(url_for('_default.homepage'))
+        return redirect(url_for('_default.home'))
 
 @_default.route('/process_login', methods=['GET', 'POST'])
 def process_login(): # Page for login processing.
@@ -66,7 +64,7 @@ def process_login(): # Page for login processing.
             return redirect(url_for('_default.login'))
         else:
             flash('LoggedIn')
-            return redirect(url_for('_default.homepage'))
+            return redirect(url_for('_default.home'))
 
 @_default.route('/apply')
 def apply(): # Page for RU Application.
@@ -75,7 +73,7 @@ def apply(): # Page for RU Application.
         return render_template('apply.html')
     else:
         flash('LoggedIn')
-        return redirect(url_for('_default.homepage'))
+        return redirect(url_for('_default.home'))
 
 @_default.route('/process_application', methods=['GET', 'POST'])
 def process_application(): # Page for application processing.
@@ -139,7 +137,7 @@ def process_application(): # Page for application processing.
         if anonymous():
             return redirect(url_for('_default.apply'))
         else:
-            return redirect(url_for('_default.homepage'))
+            return redirect(url_for('_default.home'))
 
 @_default.route('/application_submitted', methods=['GET', 'POST'])
 def application_submitted(): # Page for submitted application.
@@ -148,7 +146,7 @@ def application_submitted(): # Page for submitted application.
         if anonymous():
             return render_template('application_submitted.html')
     else:
-        return redirect(url_for('_default.homepage'))
+        return redirect(url_for('_default.home'))
 
 ## DEFINE OTHER ROUTES
 
@@ -195,13 +193,13 @@ def process_report():
                 submitReport(prod_id=1, seller_id=None, reporter_id=None, subject= subject, reason=details)
 
             # TODO Pass Report to the Database
-            return redirect(url_for('_default.homepage'))
+            return redirect(url_for('_default.home'))
 
         except InvalidReason:
             flash('InvalidReason')
         return redirect(url_for('_default.report_form'))
     else:
         if anonymous():
-            return redirect(url_for('_default.homepage'))
+            return redirect(url_for('_default.home'))
         else:
-            return redirect(url_for('_default.homepage'))
+            return redirect(url_for('_default.home'))
