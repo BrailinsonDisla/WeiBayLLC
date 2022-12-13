@@ -104,4 +104,4 @@ def listing_form(): #  Page for Listing Items as a Registered User.
 @_registered.route('/pictures')
 def display_img():
         #! number in img_grab needs to be automated
-        return render_template("index.html", images = img_grab(43))
+        return render_template("index.html", images = img_grab(46))

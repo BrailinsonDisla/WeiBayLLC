@@ -11,6 +11,7 @@
 .col-2 {
     background-color: #22e9fc;
     padding: 15px;
+    border-radius: 15px;
 }
 
 .col-2 > * {
@@ -60,6 +61,10 @@ th, td {
 #section1 th {
     background-color: #d2d2d2;
 }
+
+#section1 th, #section1 td {
+    border-radius: 15px;
+}
 /*************/
 
 /* SECTION 2 */
@@ -81,10 +86,16 @@ th, td {
 
 /* SECTION 4 */
 #section4 .col-6 {
+    
+}
+
+#section4 .container {
     text-align: center;
     background-color: #d2d2d2;
     /*margin: 10px;*/
     padding: 10px;
+    border-radius: 15px;
+    margin: 5px;
 }
 
 #section4 label {

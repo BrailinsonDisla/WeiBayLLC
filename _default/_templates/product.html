@@ -37,13 +37,14 @@
         </div>
         <div class="col-6">
             <h1>## name ##</h1>
+            <p>Seller: ## seller ##</p>
             <p>Condition: ## condition ##</p>
             <p>Rating: ## rating ##</p>
-            <p>Price: ## price ##</p>
+            <p id="price">Price: ## price ##</p>
             <div class="btn-group justify-content-center">
-                <button type="button" class="btn">Buy Now</button>
-                <button type="button" class="btn">Bid</button>
-                <button type="button" class="btn" id="report">Report</button>
+                <button type="button" name="prod_page" value="buying" class="btn" id="buy-item">Buy Now</button>
+                <button type="button" name="prod_page" value="bidding" class="btn">Bid</button>
+                <button type="button" name="prod_page" value="reporting" class="btn" id="report">Report</button>
             </div>
         </div>
     </div>
@@ -54,6 +55,17 @@
 </div>
 
 <script>
+    // document.getElementById("buy-item").addEventListener("click", (e) => {
+    //    e.preventDefault();
+    //    const price = document.getElementById("price").textContent;
+    //    console.log(price)
+    // })
+
+    // TODO:
+    // 1) Grab current user's name, seller's name, product name, and product price.
+    // 2) When "Buy Now" button is clicked, the MoneyTrade function should be invoked and
+    //    the grabbed data should be passed in.
+
     document.getElementById("report").addEventListener("click", (e) => {
         e.preventDefault();
         window.location.href = "/product/report";
