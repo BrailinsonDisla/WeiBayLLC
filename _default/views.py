@@ -152,6 +152,19 @@ def application_submitted(): # Page for submitted application.
 
 ## DEFINE OTHER ROUTES
 
+@_default.route('/home')
+def home():
+    return render_template('home.html')
+
+@_default.route('/product')
+def product():
+    return render_template('product.html')
+
+@_default.route('/product/report')
+def report():
+    return render_template('report_item.html')
+
+
 #! Need to Complete Report Form
 @_default.route('/report_form')
 def report_form():
@@ -192,4 +205,3 @@ def process_report():
             return redirect(url_for('_default.homepage'))
         else:
             return redirect(url_for('_default.homepage'))
-            

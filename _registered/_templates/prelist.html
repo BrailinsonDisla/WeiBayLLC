@@ -1,26 +1,18 @@
-{% extends 'base.html' %}
+{% extends 'navbar.html' %}
 
-{% block head %}
-    <title>Listing Form</title>
-    <link href="/static/styles/_default/prelist.css" rel="stylesheet">
+{% block head2 %}
+<link rel="stylesheet" href="/static/styles/_registered/prelist.css">
 {% endblock %}
 
-{% block body %}
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/profile">Homepage</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-            </ul>
-        </div>
-    </nav>
+{% block content %}
+<div class="container">
     <h1>Start your listing</h1>
+
+    <form action="" id="new-item-data">
+
     
     <form method="POST" action="{{ url_for('_registered.listing_form') }}">
+    
         <div class="container">
             <div class="row">
                 <div class="col-6">
@@ -36,7 +28,7 @@
                             <option>Open Box</option>
                             <option>Used</option>
                         </select>
-                    </div>
+                    </div>   
                     
                     <div>
                         <label for="item-qty" class="form-label">Quanity</label>
@@ -55,6 +47,7 @@
                         <textarea class="form-control" name="item-description" id="item-description" rows="3" placeholder="Tell us about what you're selling"></textarea>
                     </div>
 
+
                     <div class="form-group">
                         <label for="image-upload">Upload Images</label>
                         <input type="file" class="form-control-file" id="drop-area" name="item-image "ondrop="dropHandler(event)" ondragover="dragOverHandler(event)"
@@ -71,56 +64,59 @@
             </div>
         </div>
     </form>
-    <script>
-        function dragOverHandler(event) {
-            // Prevent the default behavior (previewing the file in the browser)
-            event.preventDefault();
-            
-            // Add the highlight class to the drop area
-            const dropArea = document.getElementById('drop-area');
-            dropArea.classList.add('highlight');
+
+</div>
+
+<script>
+    function dragOverHandler(event) {
+        // Prevent the default behavior (previewing the file in the browser)
+        event.preventDefault();
+
+        // Add the highlight class to the drop area
+        const dropArea = document.getElementById('drop-area');
+        dropArea.classList.add('highlight');
+    }
+
+    function dragLeaveHandler(event) {
+        // Remove the highlight class from the drop area
+        const dropArea = document.getElementById('drop-area');
+        dropArea.classList.remove('highlight');
+    }
+
+    function dropHandler(event) {
+        // Prevent the default behavior (opening the file in the browser)
+        event.preventDefault();
+
+        // Get the files that were dropped
+        const files = event.dataTransfer.files;
+
+        // Create an HTML fragment to hold the previews
+        const fragment = document.createDocumentFragment();
+
+        // Loop through the files and create a preview for each
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+
+            // Create an image element to preview the file
+            const img = document.createElement('img');
+            img.classList.add('img-thumbnail');
+
+            // Use the FileReader API to read the file and set the src of the image
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                img.src = event.target.result;
+            };
+            reader.readAsDataURL(file);
+
+            // Add the image to the HTML fragment
+            fragment.appendChild(img);
         }
-        
-        function dragLeaveHandler(event) {
-            // Remove the highlight class from the drop area
-            const dropArea = document.getElementById('drop-area');
-            dropArea.classList.remove('highlight');
-        }
-        
-        function dropHandler(event) {
-            // Prevent the default behavior (opening the file in the browser)
-            event.preventDefault();
-            
-            // Get the files that were dropped
-            const files = event.dataTransfer.files;
-            
-            // Create an HTML fragment to hold the previews
-            const fragment = document.createDocumentFragment();
-            
-            // Loop through the files and create a preview for each
-            for (let i = 0; i < files.length; i++) {
-                const file = files[i];
-                
-                // Create an image element to preview the file
-                const img = document.createElement('img');
-                img.classList.add('img-thumbnail');
-                
-                // Use the FileReader API to read the file and set the src of the image
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    img.src = event.target.result;
-                };
-                reader.readAsDataURL(file);
-          
-                // Add the image to the HTML fragment
-                fragment.appendChild(img);
-            }
-            
-            // Add the fragment to the page
-            const preview = document.getElementById('image-preview');
-            preview.innerHTML = '';
-            preview.appendChild(fragment);
-        }
-    </script>
-</body>
+
+        // Add the fragment to the page
+        const preview = document.getElementById('image-preview');
+        preview.innerHTML = '';
+        preview.appendChild(fragment);
+    }
+</script>
+
 {% endblock %}

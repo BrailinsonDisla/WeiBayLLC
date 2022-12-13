@@ -1,0 +1,46 @@
+{% extends 'navbar.html' %}
+
+{% block head2 %}
+<link rel="stylesheet" href="/static/styles/_default/home.css">
+{% endblock %}
+
+{% block content %}
+<!-- box below the top left box with a list and select boxes -->
+<div class="container">
+ <div class="row">
+     <div class="col-3">
+         <h1>Category</h1>
+            <ul>
+                <li>Category 1</li>
+                <li>Category 2</li>
+                <li>Category 3</li>
+            </ul>
+
+          <h1>Condition</h1>
+          <select>
+            <option>New</option>
+            <option>Open Box</option>
+            <option>Used</option>
+          </select>
+
+          <h1>Rating</h1>
+          <select>
+            <option>5</option>
+            <option>4</option>
+            <option>3</option>
+            <option>2</option>
+            <option>1</option>
+          </select>
+          <!-- insert star system here implementing css -->
+          <h1>Price Range</h1>
+          <form>
+            Min: <input type="text">
+          </form>
+          <form>
+            Max:<input type="text">
+          </form>
+     </div>
+</div>
+</div>
+</body>
+{% endblock %}

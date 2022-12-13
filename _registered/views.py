@@ -26,7 +26,7 @@ def profile():
 
 @_registered.route('/profile/<username>', methods=['GET', 'POST'])
 def load_profile(username : str): # Page for loading user profile.
-    return 'Welcome ' + username;
+    return render_template('success.html', username=username)
 
 @_registered.route('/logout')
 @login_required
@@ -45,6 +45,11 @@ def logout(): # Page to process logging out.
     return redirect(url_for('_default.homepage'))
 
 ## DEFINE OTHER ROUTES
+
+## <<<<<<< talike3
+## @_registered.route('/profile/new-product')
+## def new_product():
+##   return render_template('prelist.html')
 
 @_registered.route('/profile/listing_form')
 @login_required
@@ -78,5 +83,4 @@ def listing_form(): #  Page for Listing Items as a Registered User.
             "item-description: %s\n"
             "item-image: %s\n" % (product_name,product_condition,product_price, product_desc,product_images))
         return redirect(url_for('_registered.profile'))
-        
-
+ 
