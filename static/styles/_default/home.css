@@ -1,0 +1,30 @@
+.container {
+    margin-top: 20px;
+}
+
+.col-3 {
+    border: 1px solid black;
+    padding:10px;
+}
+
+.horizontal-scrollable {
+    padding: 15px;
+}
+
+.horizontal-scrollable > .row {
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.horizontal-scrollable > .row > .col {
+    display: inline-block;
+    float: none;
+}
+
+.horizontal-scrollable img {
+    max-height: 200px;
+}
+
+.image-row {
+    margin: 20px;
+}

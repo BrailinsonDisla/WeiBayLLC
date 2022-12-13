@@ -1,0 +1,36 @@
+body {
+    margin: 0;
+    /* display: grid;
+    justify-items: center; */
+}
+
+form {
+    margin: auto;
+    padding: 20px 20px;
+    width: 90%;
+    max-width: 60rem;
+    box-sizing: border-box;
+    border-radius: 1rem;
+    background-color: white;
+    border: 4px solid hsl(0, 0%, 90%);
+}
+
+form #submit{
+    margin: auto;
+    width: 90%;
+    /* padding: 10px 10px ; */
+}
+
+#drop-area {
+    border: 2px dashed rgba(204, 204, 204, 0.168);
+    background-color: #eee;
+    padding: 20px;
+    width: 100%;
+    text-align: center;
+    transition: all 0.2s;
+  }
+
+  #drop-area.highlight {
+    border-color: #222;
+    background-color: #eee;
+  }

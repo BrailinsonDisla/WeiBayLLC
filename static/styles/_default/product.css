@@ -1,0 +1,46 @@
+body {
+    background-color: white;
+}
+
+
+.container {
+    margin-top: 50px;
+}
+
+.carousel {
+    text-align: center;
+    align-items: center;
+    /*background-color: black;*/
+}
+
+.carousel img {
+    margin: auto;
+
+    max-width: 75%;
+}
+
+
+/* TODO: Find a way to change the color of the carousel prev/next buttons. */
+
+.carousel-control-prev:hover, .carousel-control-next:hover {
+    background-color: #a6a6a6;
+}
+
+.btn-group {
+    width: 100%;
+}
+
+.btn {
+    margin: 10px;
+    background-color: #ffeb0a;
+    color: black;
+}
+
+.btn:hover {
+    background-color: #fff8ad;
+    color: #898989;
+}
+
+.description {
+    padding: 50px;
+}

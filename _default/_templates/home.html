@@ -1,0 +1,233 @@
+{% extends 'navbar.html' %}
+
+{% block head2 %}
+<link rel="stylesheet" href="/static/styles/_default/home.css">
+{% endblock %}
+
+{% block content %}
+<!-- box below the top left box with a list and select boxes -->
+<div class="container">
+ <div class="row">
+     <div class="col-3">
+         <h1>Category</h1>
+            <ul>
+                <li>Category 1</li>
+                <li>Category 2</li>
+                <li>Category 3</li>
+            </ul>
+
+          <h1>Condition</h1>
+          <select>
+            <option>New</option>
+            <option>Open Box</option>
+            <option>Used</option>
+          </select>
+
+          <h1>Rating</h1>
+          <select>
+            <option>5</option>
+            <option>4</option>
+            <option>3</option>
+            <option>2</option>
+            <option>1</option>
+          </select>
+          <!-- insert star system here implementing css -->
+          <h1>Price Range</h1>
+          <form>
+            Min: <input type="text">
+          </form>
+          <form>
+            Max:<input type="text">
+          </form>
+     </div>
+     <div class="col-9 container horizontal-scrollable">
+      <div class="row image-row">
+          <h1>Clothes</h1>
+          <hr>
+          <div class="col">
+              <img src="/static/img/clothes/Adidas_shirt.webp">
+          </div>
+          <div class="col">
+              <img src="/static/img/clothes/Adidas_Ultraboost.webp">
+          </div>
+          <div class="col">
+              <img src="/static/img/clothes/Cargo_pants.webp">
+          </div>
+          <div class="col">
+              <img src="/static/img/clothes/Converse_Chucks.webp">
+          </div>
+          <div class="col">
+              <img src="/static/img/clothes/Jordans.webp">
+          </div>
+          <div class="col">
+              <img src="/static/img/clothes/Mens_Chinos.webp">
+          </div>
+          <div class="col">
+              <img src="/static/img/clothes/Puma_Slim_Dress.webp">
+          </div>
+      </div>
+
+      <div class="row image-row">
+          <h1>Electronics</h1>
+          <hr>
+          <div class="col">
+              <img src="/static/img/electronics/Apple_Ipad_Air.webp">
+          </div>
+          <div class="col">
+              <img src="/static/img/electronics/Apple_Iphone_11_128Gb.webp">
+          </div>
+          <div class="col">
+              <img src="/static/img/electronics/Apple_Iphone_12_pro_max_128Gb.webp">
+          </div>
+          <div class="col">
+              <img src="/static/img/electronics/Apple_Watch_Series_7.webp">
+          </div>
+          <div class="col">
+              <img src="/static/img/electronics/Dell_Fast_Gaming_laptop.jpg">
+          </div>
+          <div class="col">
+              <img src="/static/img/electronics/Google-Pixel_4a.webp">
+          </div>
+          <div class="col">
+              <img src="/static/img/electronics/Lenovo_IdeaPad_5.jpg">
+          </div>
+          <div class="col">
+              <img src="/static/img/electronics/TicWatch_pro_3.webp">
+          </div>
+      </div>
+
+      <div class="row image-row">
+          <h1>Home and Garden</h1>
+          <hr>
+          <div class="col">
+              <img src="/static/img/home_and_garden/Coffee_table.webp">
+          </div>
+          <div class="col">
+              <img src="/static/img/home_and_garden/Dining_Chair_Set.webp">
+          </div>
+          <div class="col">
+              <img src="/static/img/home_and_garden/Garden_Hose.webp">
+          </div>
+          <div class="col">
+              <img src="/static/img/home_and_garden/Garden_Lights.webp">
+          </div>
+          <div class="col">
+              <img src="/static/img/home_and_garden/Ivory_Rug.webp">
+          </div>
+          <div class="col">
+              <img src="/static/img/home_and_garden/Lawn_Mower.webp">
+          </div>
+          <div class="col">
+              <img src="/static/img/home_and_garden/Leaf_Blower.webp">
+          </div>
+          <div class="col">
+              <img src="/static/img/home_and_garden/LED_String_Lights.webp">
+          </div>
+          <div class="col">
+              <img src="/static/img/home_and_garden/Outdoor_Lights_Garden.webp">
+          </div>
+          <div class="col">
+              <img src="/static/img/home_and_garden/Vintage_Arm_Chair.webp">
+          </div>
+      </div>
+
+      <div class="row image-row">
+          <h1>Jewelry</h1>
+          <hr>
+          <div class="col">
+              <img src="/static/img/jewelry/Black_Leather_Ring.jpg">
+          </div>
+          <div class="col">
+              <img src="/static/img/jewelry/Casio_Watch.webp">
+          </div>
+          <div class="col">
+              <img src="/static/img/jewelry/Diamond_Ring_Women.jpg">
+          </div>
+          <div class="col">
+              <img src="/static/img/jewelry/Flower_Earrings.jpg">
+          </div>
+          <div class="col">
+              <img src="/static/img/jewelry/Gold_Chain.jpg">
+          </div>
+          <div class="col">
+              <img src="/static/img/jewelry/Longines_Big_Eye_Watch.webp">
+          </div>
+          <div class="col">
+              <img src="/static/img/jewelry/Pearl_Earrings.jpg">
+          </div>
+          <div class="col">
+              <img src="/static/img/jewelry/Pocket_Watch.jpg">
+          </div>
+          <div class="col">
+              <img src="/static/img/jewelry/Silver_Cuban_Chain.jpg">
+          </div>
+          <div class="col">
+              <img src="/static/img/jewelry/Tisso_Watch_Silver.webp">
+          </div>
+      </div>
+
+      <div class="row image-row">
+          <h1>School Supplies</h1>
+          <hr>
+          <div class="col">
+              <img src="/static/img/school_supplies/150_School_Paper.webp">
+          </div>
+          <div class="col">
+              <img src="/static/img/school_supplies/Ball_Point_Pen.webp">
+          </div>
+          <div class="col">
+              <img src="/static/img/school_supplies/Colored_Pencils.webp">
+          </div>
+          <div class="col">
+              <img src="/static/img/school_supplies/Eraser.webp">
+          </div>
+          <div class="col">
+              <img src="/static/img/school_supplies/Highligher_Markers.webp">
+          </div>
+          <div class="col">
+              <img src="/static/img/school_supplies/Notebook__Paper.webp">
+          </div>
+          <div class="col">
+              <img src="/static/img/school_supplies/Post-it_Sticky_Notes.webp">
+          </div>
+          <div class="col">
+              <img src="/static/img/school_supplies/Yellow_Highlighter.webp">
+          </div>
+      </div>
+
+      <div class="row image-row">
+          <h1>Toys</h1>
+          <hr>
+          <div class="col">
+              <img src="/static/img/toys/Bowser_Doll.jpg">
+          </div>
+          <div class="col">
+              <img src="/static/img/toys/Connect_4.webp">
+          </div>
+          <div class="col">
+              <img src="/static/img/toys/Jenga.webp">
+          </div>
+          <div class="col">
+              <img src="/static/img/toys/Lego_Jeep_Wrangler.webp">
+          </div>
+          <div class="col">
+              <img src="/static/img/toys/Lego_Motorcycle.webp">
+          </div>
+          <div class="col">
+              <img src="/static/img/toys/Lego_Spaceship.webp">
+          </div>
+          <div class="col">
+              <img src="/static/img/toys/Luigi_Doll.png">
+          </div>
+          <div class="col">
+              <img src="/static/img/toys/Nerf_Gun.webp">
+          </div>
+          <div class="col">
+              <img src="/static/img/toys/Teenage_Mutant_Ninja_Turtles.jpg">
+          </div>
+      </div>
+  </div>
+</div>
+</div>
+</body>
+{% endblock %}

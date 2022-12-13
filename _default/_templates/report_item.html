@@ -1,0 +1,40 @@
+{% extends 'navbar.html' %}
+
+{% block head2 %}
+<link rel="stylesheet" href="/static/styles/_default/report_item.css">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h3>Report Item</h3>
+    <form>
+        <div class="group">
+            <label for="reason">Reason for Reporting:</label>
+            <select name="reason" id="reason">
+                <option value>- Select -</option>
+                <option value="Issue with item">Issue with item</option>
+                <option value="Illegal">Illegal</option>
+            </select>
+        </div>
+
+        <div class="group">
+            <label for="details">Details:</label>
+            <textarea
+                    id="details"
+                    name="details"
+                    placeholder="Provide more information about your complaint here."></textarea>
+        </div>
+
+        <input type="submit" name="submit_button" value="Submit" id="submit-button">
+    </form>
+</div>
+
+<script>
+    document.getElementById("submit-button").addEventListener("click", (e) => {
+        e.preventDefault();
+        window.location.href = "/home";
+    })
+
+    // TODO: Add in a POST request to send data to back-end
+</script>
+{% endblock %}

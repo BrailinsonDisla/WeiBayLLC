@@ -15,6 +15,6 @@ def dashboard():
     if is_admin():
         return render_template('dashboard.html')
     else:
-        return redirect(url_for('_default.homepage'))
+        return redirect(url_for('_default.home'))
 
 ## DEFINE OTHER ROUTES
