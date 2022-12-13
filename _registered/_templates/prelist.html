@@ -11,7 +11,7 @@
     <!-- <form action="" id="new-item-data"> -->
 
     
-    <form method="POST" action="{{ url_for('_registered.listing_form') }}">
+    <form method="POST" action="{{ url_for('_registered.listing_form') }}" enctype="multipart/form-data">
         <div class="container">
             <div class="row">
                 <div class="col-6">
@@ -49,8 +49,8 @@
 
                     <div class="form-group">
                         <label for="image-upload">Upload Images</label>
-                        <input type="file" class="form-control-file" id="drop-area" name="item-image "ondrop="dropHandler(event)" ondragover="dragOverHandler(event)"
-                        ondragleave="dragLeaveHandler(event)" multiple>
+                        <input type="file" class="form-control-file" id="drop-area" name="item-image" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)"
+                        ondragleave="dragLeaveHandler(event)" accept="image/*"" multiple="true">
                             <p>Drop files here to upload</p>
                         </div>
                     </div>
@@ -81,7 +81,7 @@
         const dropArea = document.getElementById('drop-area');
         dropArea.classList.remove('highlight');
     }
-
+/*
     function dropHandler(event) {
         // Prevent the default behavior (opening the file in the browser)
         event.preventDefault();
@@ -116,6 +116,7 @@
         preview.innerHTML = '';
         preview.appendChild(fragment);
     }
+*/
 </script>
 
 {% endblock %}

@@ -2,7 +2,7 @@
 from flask_principal import Identity, identity_changed, AnonymousIdentity
 
 # Imports necessary modules to create the registered user blueprint.
-from flask import Blueprint, render_template, redirect, url_for, request, session
+from flask import Blueprint, Flask, flash, render_template, redirect, url_for, request, session
 
 # Imports the tools required from flask_login for Login Management.
 from flask_login import current_user, logout_user, login_required
@@ -17,9 +17,10 @@ _registered = Blueprint('_registered', __name__, template_folder='_templates', s
 from werkzeug.utils import secure_filename
 
 from DBConnection import * 
+import os
+from PIL import Image
 
-from Systems.productManagement import submit_listing
-
+from Systems.productManagement import submit_listing,  img_grab
 
 # Defines the _registered blueprint's root.
 @_registered.route('/profile')
@@ -64,26 +65,49 @@ def listing_form(): #  Page for Listing Items as a Registered User.
         product_condition = request.form.get('item-condition')
         product_price = request.form.get('item-price')
         product_desc = request.form.get('item-description')
-        # product_images = request.files['item-image']
         product_qty = request.form.get('item-qty')
+        image = request.files.getlist('item-image')
         
         # if not product_images:
         #     return 'No pic uploaded', 400
         
-        # filename = secure_filename(product_images.filename)
-        # mimetype = product_images.mimetype
-        submit_listing(seller,product_name,product_desc,product_condition, product_qty,product_price,None)
+        UPLOAD_FOLDER = 'static/img/items/'
+        WeiBayLLC_App.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
         
-        # for product_images_data in product_images:
-        #     product_images_data = product_images.read()
-        #     binary_data = 
+        ALLOWED_EXTENSTIONS = set(['png','jpg','jpeg','gif'])
         
-        # print("item-name: %s\n"
-        #     "item-condition %s\n"
-        #     "item-price %s\n"
-        #     "item-description: %s\n"
-        #     "item-image: %s\n" % (product_name,product_condition,product_price, product_desc,product_images))
+        def allowed_file(filename):
+            return '.' in filename and filename.rsplit('.',1)[1].lower() in ALLOWED_EXTENSTIONS
+        
+        #product image path
+        img_path = []
+        for file in image:
+            if file and allowed_file(file.filename):
+                # img = Image.open(file)
+                # image = img.resize((300,300))
+                filename = secure_filename(file.filename)
+                location = os.path.join(WeiBayLLC_App.config['UPLOAD_FOLDER'],filename)
+                img_path.append(filename)
+                file.save(location)
+            else:
+                return "FAILED"
+        
+        #Add the image_path to database For PENDINGAPPROVALPRODUCTS
+        list_path = '|'.join(img_path) 
+        submit_listing(seller,product_name, product_desc, product_condition, product_qty, product_price, list_path)
         return redirect(url_for('_registered.profile'))
     else:
         
         return redirect(url_for('_registered.profile'))
+    
+
+@_registered.route('/pictures')
+def display_img():
+        #! number in img_grab needs to be automated
+        return render_template("index.html", images = img_grab(43))
+
+
+    
+
+
+    
