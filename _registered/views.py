@@ -19,9 +19,9 @@ _registered = Blueprint('_registered', __name__, template_folder='_templates', s
 def profile():
     return render_template('profile.html')  # fix
 
-@_registered.route('/profile/<username>', methods=['GET', 'POST'])
-def load_profile(username : str): # Page for loading user profile.
-    return 'Welcome ' + username;
+@_registered.route('/profile', methods=['GET', 'POST'])
+def load_profile(): # Page for loading user profile.
+    return 'Welcome ';
 
 @_registered.route('/logout')
 @login_required

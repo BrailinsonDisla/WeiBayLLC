@@ -81,6 +81,11 @@
                                     <p>You are already registered. <a href="{{ url_for('_default.login') }}">Login</a></p>
                                 </div>
 
+                            {% elif messages[0] == 'DeniedUser' %}
+                                <div class="alert alert-danger" role="alert">
+                                    <p>You are denied from the system.</p>
+                                </div>
+
                             {% elif messages[0] == 'BannedApplicant' %}
                                 <div class="alert alert-danger" role="alert">
                                     <p>You are banned from the system.</p>
@@ -88,7 +93,7 @@
                             {% endif %}
                         {% endif %}
 
-                        {% if not messages or messages[0] not in ['BannedApplicant', 'AlreadyRegistered'] %}
+                        {% if not messages or messages[0] not in ['DeniedUser', 'BannedApplicant', 'AlreadyRegistered'] %}
                             <p>Already have an account? <a href="{{ url_for('_default.login') }}">Login</a></p>
                         {% endif %}
                     {% endwith %}

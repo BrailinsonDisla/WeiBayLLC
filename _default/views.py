@@ -2,7 +2,8 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 
 # Imports the tools required from the Account Management module.
-from accountManagement import submitRUApplication, authenticate, anonymous
+from accountManagement import submitRUApplication, authenticate, anonymous,\
+                                is_admin, is_registered_user, is_guest_user
 
 # Imports user-defined exceptions.
 from UD_Exceptions import *
@@ -12,7 +13,7 @@ _default = Blueprint('_default', __name__, template_folder='_templates', static_
 
 @_default.route('/')
 def homepage(): # Homepage for the website application.
-    return render_template('home.html', anonymous=anonymous)
+    return render_template('home.html')
 
 @_default.route('/login')
 def login(): # Page for login.
@@ -41,14 +42,19 @@ def process_login(): # Page for login processing.
 
             # Checks if the authentication was successful.
             if authenticated:
-                # TODO: FIX
-                return redirect(url_for('_registered.load_profile', username=request.form.get('email')))
+                # Check if it is an admin.
+                if is_admin():
+                    return redirect(url_for('_admin.dashboard'))
+                else:
+                    return redirect(url_for('_registered.load_profile'))
 
         # DB-AUTHENTICATION-RELATED EXCEPTIONS.
         except IncorrectPassword:
             flash('IncorrectPassword')
         except PendingApproval:
             flash('PendingApproval')
+        except DeniedUser:
+            flash('DeniedUser')
         except BannedUser:
             flash('BannedUser')
         except UserDNE:
@@ -121,9 +127,10 @@ def process_application(): # Page for application processing.
         # DB-SYSTEM-RELATED EXCEPTIONS.
         except PendingApplicant:
             flash('PendingApplicant')
-        # TODO: HANDLE FOR DENIED USERS.
         except AlreadyRegistered:
             flash('AlreadyRegistered')
+        except DeniedUser:
+            flash('DeniedUser')
         except BannedApplicant:
             flash('BannedApplicant')
 

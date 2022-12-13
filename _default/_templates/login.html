@@ -42,6 +42,10 @@
                                 <div class="alert alert-danger" role="alert">
                                     <p>Pending approval, must wait.</p>
                                 </div>
+                            {% elif messages[0] == 'DeniedUser' %}
+                                <div class="alert alert-danger" role="alert">
+                                    <p>You are denied from the system.</p>
+                                </div>
                             {% elif messages[0] == 'BannedUser' %}
                                 <div class="alert alert-danger" role="alert">
                                     <p>You are banned from the system.</p>
@@ -53,7 +57,7 @@
                             {% endif %}
                         {% endif %}
 
-                        {% if not messages or messages[0] not in ['UserDNE', 'BannedUser'] %}
+                        {% if not messages or messages[0] not in ['UserDNE', 'DeniedUser', 'BannedUser'] %}
                             <p>Don't have an account?<a href="{{ url_for('_default.apply') }}">Apply</a></p>
                         {% endif %}
                     {% endwith %}
