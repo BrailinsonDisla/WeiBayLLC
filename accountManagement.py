@@ -436,6 +436,7 @@ def setGlobalIdentity(user: User):
     # Creates an identity for the user logged in.
     identity = Identity(user.username)
 
+
     # Sets the user for the identity.
     identity.user = user
 

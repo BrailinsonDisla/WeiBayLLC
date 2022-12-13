@@ -94,6 +94,10 @@ class InvalidReporterID(Exception):
 class InvalidReason(Exception):
     pass
 
+# Exception for invalid reason.
+class InvalidSubject(Exception):
+    pass
+
 # Exception for report pending approval.
 class PendingReportApproval(Exception):
     pass

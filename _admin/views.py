@@ -14,7 +14,7 @@ _admin = Blueprint('_admin', __name__, template_folder='_templates', static_fold
 def dashboard():
     # Checks if the current user is an admin.
     if is_admin():
-        return render_template('dashboard.html')
+            return render_template('dashboard.html')
     else:
         return redirect(url_for('_default.homepage'))
 
