@@ -20,7 +20,7 @@ from DBConnection import *
 import os
 from PIL import Image
 
-from Systems.productManagement import submit_listing,  img_grab
+from Systems.productManagement2 import submit_listing,  img_grab
 
 # Defines the _registered blueprint's root.
 @_registered.route('/profile')
@@ -105,9 +105,3 @@ def listing_form(): #  Page for Listing Items as a Registered User.
 def display_img():
         #! number in img_grab needs to be automated
         return render_template("index.html", images = img_grab(43))
-
-
-    
-
-
-    
