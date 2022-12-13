@@ -1,6 +1,6 @@
 {% extends 'navbar.html' %}
 
-{% block head2 %}
+{% block navbar_head %}
 <link rel="stylesheet" href="/static/styles/_registered/profile.css">
 {% endblock %}
 
@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-2 justify-content-center">
             <img class="user-pic" src="/static/img/_registered/user.png" alt="user">
-            <h4>Hello, ## User ## </h4>
+            <h4>Hi, {{ current_user.f_name }} </h4>
             <div class="btn-group-vertical" role="group">
                 <input type="radio" class="btn-check" name="btnradio" id="btnradio1" onclick="op1()" checked>
                 <label class="btn btn-outline-primary" for="btnradio1">Profile</label>
@@ -38,44 +38,48 @@
                 <table id="table1">
                     <tr>
                         <th>First Name</th>
-                        <td>dummy</td>
+                        <td>{{ current_user.f_name }}</td>
                     </tr>
                     <tr>
                         <th>Last Name</th>
-                        <td>dummy</td>
+                        <td>{{ current_user.l_name }}</td>
                     </tr>
                     <tr>
                         <th>User Name</th>
-                        <td>dummy</td>
+                        <td>{{ current_user.username }}</td>
                     </tr>
                     <tr>
                         <th>Email</th>
-                        <td>dummy</td>
+                        <td>{{ current_user.email }}</td>
                     </tr>
                     <tr>
                         <th>Phone Number</th>
-                        <td>dummy</td>
+                        <td>{{ current_user.phone }}</td>
                     </tr>
-                    <tr>
-                        <th>Address</th>
-                        <td>dummy</td>
-                    </tr>
-                    <tr>
-                        <th>City</th>
-                        <td>dummy</td>
-                    </tr>
-                    <tr>
-                        <th>State</th>
-                        <td>dummy</td>
-                    </tr>
-                    <tr>
-                        <th>ZIP Code</th>
-                        <td>dummy</td>
-                    </tr>
-                    <tr>
-                        <th>Country</th>
-                        <td>dummy</td>
-                    </tr>
+
+                    {%  if current_user.addressFK %}
+                        {% set address = get_address(current_user.addressFK) %}
+                        <tr>
+                            <th>Address</th>
+                            <td>{{ address.address }}</td>
+                        </tr>
+                        <tr>
+                            <th>City</th>
+                            <td>{{ address.city }}</td>
+                        </tr>
+                        <tr>
+                            <th>State</th>
+                            <td>{{ address.state }}</td>
+                        </tr>
+                        <tr>
+                            <th>ZIP Code</th>
+                            <td>{{ address.zip_code }}</td>
+                        </tr>
+                        <tr>
+                            <th>Country</th>
+                            <td>{{ address.country }}</td>
+                        </tr>
+                    {% endif %}
                 </table>
             </div>
             <div class="container" id="section2">
@@ -87,6 +91,7 @@
                         <th></th>
                         <th></th>
                     </tr>
+                    {% set orders = %}
                     <tr>
                         <td>dummy</td>
                         <td>dummy</td>
@@ -100,7 +105,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="card text-center">
-                          <img src="/static/img/logos/logo.png" alt="weibay_logo">
+                          <img src="/img/logos/WeiBayLLC_Logo.png" alt="weibay_logo">
                           <div class="card-body">
                             <h5 class="card-title">dummy item 1</h5>
                             <p class="card-text">Name: ## name ##</p>
@@ -112,7 +117,7 @@
                     </div>
                     <div class="col">
                         <div class="card text-center">
-                          <img src="/static/img/logos/logo.png" alt="weibay_logo">
+                          <img src="/img/logos/WeiBayLLC_Logo.png" alt="weibay_logo">
                           <div class="card-body">
                             <h5 class="card-title">dummy item 2</h5>
                             <p class="card-text">Name: ## name ##</p>
@@ -124,7 +129,7 @@
                     </div>
                     <div class="col">
                         <div class="card text-center">
-                          <img src="/static/img/logos/logo.png" alt="weibay_logo">
+                          <img src="/img/logos/WeiBayLLC_Logo.png" alt="weibay_logo">
                           <div class="card-body">
                             <h5 class="card-title">dummy item 3</h5>
                             <p class="card-text">Name: ## name ##</p>
@@ -136,7 +141,7 @@
                     </div>
                     <div class="col">
                         <div class="card text-center">
-                          <img src="/static/img/logos/logo.png" alt="weibay_logo">
+                          <img src="/img/logos/WeiBayLLC_Logo.png" alt="weibay_logo">
                           <div class="card-body">
                             <h5 class="card-title">dummy item 4</h5>
                             <p class="card-text">Name: ## name ##</p>
@@ -148,7 +153,7 @@
                     </div>
                     <div class="col">
                         <div class="card text-center">
-                          <img src="/static/img/logos/logo.png" alt="weibay_logo">
+                          <img src="/img/logos/WeiBayLLC_Logo.png" alt="weibay_logo">
                           <div class="card-body">
                             <h5 class="card-title">dummy item 5</h5>
                             <p class="card-text">Name: ## name ##</p>
@@ -162,7 +167,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="card text-center">
-                          <img src="/static/img/logos/logo.png" alt="weibay_logo">
+                          <img src="/img/logos/WeiBayLLC_Logo.png" alt="weibay_logo">
                           <div class="card-body">
                             <h5 class="card-title">dummy item 6</h5>
                             <p class="card-text">Name: ## name ##</p>
@@ -174,7 +179,7 @@
                     </div>
                     <div class="col">
                         <div class="card text-center">
-                          <img src="/static/img/logos/logo.png" alt="weibay_logo">
+                          <img src="/img/logos/WeiBayLLC_Logo.png" alt="weibay_logo">
                           <div class="card-body">
                             <h5 class="card-title">dummy item 7</h5>
                             <p class="card-text">Name: ## name ##</p>
@@ -186,7 +191,7 @@
                     </div>
                     <div class="col">
                         <div class="card text-center">
-                          <img src="/static/img/logos/logo.png" alt="weibay_logo">
+                          <img src="/img/logos/WeiBayLLC_Logo.png" alt="weibay_logo">
                           <div class="card-body">
                             <h5 class="card-title">dummy item 8</h5>
                             <p class="card-text">Name: ## name ##</p>
@@ -198,7 +203,7 @@
                     </div>
                     <div class="col">
                         <div class="card text-center">
-                          <img src="/static/img/logos/logo.png" alt="weibay_logo">
+                          <img src="/img/logos/WeiBayLLC_Logo.png" alt="weibay_logo">
                           <div class="card-body">
                             <h5 class="card-title">dummy item 9</h5>
                             <p class="card-text">Name: ## name ##</p>
@@ -210,7 +215,7 @@
                     </div>
                     <div class="col">
                         <div class="card text-center">
-                          <img src="/static/img/logos/logo.png" alt="weibay_logo">
+                          <img src="/img/logos/WeiBayLLC_Logo.png" alt="weibay_logo">
                           <div class="card-body">
                             <h5 class="card-title">dummy item 10</h5>
                             <p class="card-text">Name: ## name ##</p>
@@ -306,7 +311,7 @@
                         <td><button type="button" class="btn">Remove</button></td>
                     </tr>
                 </table>
-                <a href="/profile/listing_form" class="btn">Post New Item</a>
+                <a href="/profile/new-product" class="btn">Post New Item</a>
             </div>
             <div class="container" id="section6">
                 <h3>Change Email</h3>

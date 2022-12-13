@@ -19,8 +19,11 @@ from DBConnection import dbConnection, dbCursor
 # Imports user-defined exceptions.
 from UD_Exceptions import *
 
+# Imports generic functions.
+from generic import titleCase
+
 # Imports required DB model.
-from DBModels import User, Anonymous
+from DBModels import User, Anonymous, Address
 
 # Defines the admin role.
 default_admin_role = 'ADMIN'
@@ -104,8 +107,6 @@ def submitRUApplication(f_name: str, l_name: str, email: str, pswd: str, confirm
             # Raise a PendingApplication exception.
             raise PendingApplicant
 
-        # TODO: HANDLE FOR DeniedUsers
-
         # Checks if the user is already registered.
         dbCursor.execute("SELECT `Username` FROM RegisteredUsers WHERE `Username` = %s", (username,))
 
@@ -116,6 +117,17 @@ def submitRUApplication(f_name: str, l_name: str, email: str, pswd: str, confirm
         if dbCursor.rowcount == 1:
             # Raise AlreadyRegistered exception.
             raise AlreadyRegistered
+
+        # Checks if the user is denied from the system.
+        dbCursor.execute("SELECT `Username` FROM DeniedUsers WHERE `Username` = %s", (username,))
+
+        # Fetches the first result of the query.
+        dbCursor.fetchone()
+
+        # Checks if the username exists in DeniedUsers.
+        if dbCursor.rowcount == 1:
+            # Raise DeniedUser exception.
+            raise DeniedUser
 
         # Checks if the user is banned.
         dbCursor.execute("SELECT `Username` FROM BannedUsers WHERE `Username` = %s", (username,))
@@ -145,6 +157,8 @@ def submitRUApplication(f_name: str, l_name: str, email: str, pswd: str, confirm
         raise PendingApplicant
     except AlreadyRegistered:
         raise AlreadyRegistered
+    except DeniedUser:
+        raise DeniedUser
     except BannedApplicant:
         raise BannedApplicant
 
@@ -322,6 +336,41 @@ def get_user(username: str):
     except Exception as e:
         print('FAILED TO GET USER:', username, flush=True)
 
+# Gets the address in the context of the Address model.
+def get_address(address_id: int):
+    try:
+        # Gets the information for the address with given key.
+        dbCursor.execute("SELECT * FROM Addresses WHERE `Address ID` = %s", (address_id,))
+
+        # Fetches the first result of the query.
+        address_data = dbCursor.fetchone()
+
+        # Checks if an address exists.
+        if dbCursor.rowcount == 1:
+            # Defines an address using the Address model.
+            address = Address()
+
+            # Sets the address.
+            address.address = titleCase(address_data[1])
+
+            # Sets the city.
+            address.city = titleCase(address_data[2])
+
+            # Sets the state.
+            address.state = titleCase(address_data[3])
+
+            # Sets the zip code.
+            address.zip_code = address_data[4]
+
+            # Sets the country.
+            address.country = titleCase(address_data[5])
+
+            # Returns the address.
+            return address
+
+    except Exception as e:
+        print('FAILED TO GET ADDRESS WITH ID:', address_id, flush=True)
+
 # Authenticates a user into the application system.
 def authenticate(username: str, pswd: str):
     # Cleans up the input for username.
@@ -349,47 +398,55 @@ def authenticate(username: str, pswd: str):
                     # Sets the identity for the user logged in.
                     setGlobalIdentity(user)
 
-                    # # Sets the identity of the user logged in.
-                    # principal.set_identity(g.identity)
-
                     # Indicate successful authentication.
                     return True
             else:
                 # Raise an IncorrectPassword exception.
                 raise IncorrectPassword
+
         # Checks if the user is pending approval.
+        dbCursor.execute("SELECT * FROM PendingApprovalUsers WHERE `Username` = %s", (username,))
+
+        # Fetches the first result of the query.
+        user_data = dbCursor.fetchone()
+
+        # Checks if the username is a user pending approval.
+        if dbCursor.rowcount == 1:
+            # Raise an PendingApproval exception.
+            raise PendingApproval
+
+        # Checks if the user is denied.
+        dbCursor.execute("SELECT * FROM DeniedUsers WHERE `Username` = %s", (username,))
+
+        # Fetches the first result of the query.
+        user_data = dbCursor.fetchone()
+
+        # Checks if the username is a denied user.
+        if dbCursor.rowcount == 1:
+            # Raise an DeniedUser exception.
+            raise DeniedUser
+
+        # Checks if the user is banned.
+        dbCursor.execute("SELECT * FROM BannedUsers WHERE `Username` = %s", (username,))
+
+        # Fetches the first result of the query.
+        user_data = dbCursor.fetchone()
+
+        # Checks if the username is a banned user.
+        if dbCursor.rowcount == 1:
+            # Raise a BannedUser exception.
+            raise BannedUser
         else:
-            # Checks if the user is pending approval.
-            dbCursor.execute("SELECT * FROM PendingApprovalUsers WHERE `Username` = %s", (username,))
-
-            # Fetches the first result of the query.
-            user_data = dbCursor.fetchone()
-
-            # Checks if the username is a user pending approval.
-            if dbCursor.rowcount == 1:
-                # Raise an IncorrectPassword exception.
-                raise PendingApproval
-            # Checks if the user is banned.
-            else:
-                # Checks if the user is banned.
-                dbCursor.execute("SELECT * FROM BannedUsers WHERE `Username` = %s", (username,))
-
-                # Fetches the first result of the query.
-                user_data = dbCursor.fetchone()
-
-                # Checks if the username is a banned user.
-                if dbCursor.rowcount == 1:
-                    # Raise a BannedUser exception.
-                    raise BannedUser
-                else:
-                    # Raise a user does not exist exception.
-                    raise UserDNE
+            # Raise a user does not exist exception.
+            raise UserDNE
 
     # Re-throw exception for system-specific exceptions.
     except IncorrectPassword:
         raise IncorrectPassword
     except PendingApproval:
         raise PendingApproval
+    except DeniedUser:
+        raise DeniedUser
     except BannedUser:
         raise BannedUser
     except UserDNE:
@@ -453,11 +510,11 @@ def setGlobalIdentity(user: User):
 
 # Checks if the current user is anonymous.
 def anonymous():
-    return isinstance(current_user, Anonymous)
+    return current_user is None and isinstance(current_user, Anonymous)
 
 # Checks if the current identity is anonymous.
 def anonymousIdentity():
-    return g.identity == None or not hasattr(g.identity, 'id')
+    return isinstance(g.identity, AnonymousIdentity)
 
 # Checks if the current user is admin.
 def is_admin():
@@ -472,3 +529,8 @@ def is_registered_user():
 # Checks if the current user is a guest user.
 def is_guest_user():
     return anonymous()
+
+@WeiBayLLC_App.context_processor
+def is_anonymous():
+    return dict(current_user=current_user, anonymous=anonymous,
+                get_address=get_address)

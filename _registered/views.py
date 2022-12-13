@@ -32,6 +32,7 @@ def profile():
 def load_profile(username : str): # Page for loading user profile.
     return render_template('success.html', username=username)
 
+
 @_registered.route('/logout')
 @login_required
 def logout(): # Page to process logging out.

@@ -27,6 +27,10 @@ class PendingApplicant(Exception):
 class AlreadyRegistered(Exception):
     pass
 
+# Exception for denied users.
+class DeniedUser(Exception):
+    pass
+
 # Exception for banned applicants.
 class BannedApplicant(Exception):
     pass
@@ -106,6 +110,19 @@ class PendingReportApproval(Exception):
 class ApprovedReport(Exception):
     pass
 
-# Except for denied report.
+# Exception for denied report.
 class DeniedReport(Exception):
+    pass
+
+## ORDER-MANAGEMENT-RELATED ##
+# Exception for no address on file.
+class NoAddressOnFile(Exception):
+    pass
+
+# Exception for invalid bid amount.
+class InvalidBidAmount(Exception):
+    pass
+
+# Exception for bid amount less than price.
+class BidLessThanPrice(Exception):
     pass

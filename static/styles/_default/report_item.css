@@ -9,6 +9,17 @@
 #details {
     width: 400px;
 }
+.container {
+    margin-top: 50px;
+}
+
+#reason {
+    width: 350px;
+}
+
+#details {
+    width: 400px;
+}
 
 .group > * {
     margin: 15px 15px 15px 0px; /* top right bottom left */
